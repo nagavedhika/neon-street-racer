@@ -1,7 +1,6 @@
-# Ignore Python source files so Vercel does not attempt to treat main.py as a Serverless function
-main.py
-src/
-data/
-Dockerfile
-requirements.txt
+.git
+.venv/
+venv/
+__pycache__/
+*.pyc
 build/web-cache/
