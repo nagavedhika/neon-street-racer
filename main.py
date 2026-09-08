@@ -23,8 +23,7 @@ async def main():
     await game.run()
 
 
-if __name__ == "__main__":
-    try:
-        asyncio.run(main())
-    except RuntimeError:
-        asyncio.create_task(main())
+try:
+    asyncio.run(main())
+except RuntimeError:
+    asyncio.create_task(main())

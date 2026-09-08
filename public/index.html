@@ -20,12 +20,16 @@ import platform
 import json
 from pathlib import Path
 
+true = True
+false = False
+null = None
+
 # do not rename
 async def custom_site():
     import embed
-    platform.document.body.style.background = "#7f7f7f"
+    platform.document.body.style.background = "#0d0f18"
 
-    platform.window.transfer.hidden = true
+    platform.window.transfer.hidden = True
     platform.window.canvas.style.visibility = "visible"
 
 
@@ -323,7 +327,7 @@ height="720px"
     oncontextmenu="event.preventDefault()" tabindex=1 hidden>
     </canvas>
 
-    <div id="infobox">Loading, please wait ...</div>
+    <div id="infobox" onclick="if(window.MM) window.MM.UME = true;">Loading, please wait ...</div>
 
     <div id=html></div>
 

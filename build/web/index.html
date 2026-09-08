@@ -37,16 +37,16 @@ async def custom_site():
 
 
     # unpack filesystem from compressed archive into work dir
-    import zipfile
-    try:
+    if platform.window.location.host.find('.itch.zone')>0:
+        import zipfile
         async with platform.fopen("neon-street-racer.apk", "rb") as archive:
             with zipfile.ZipFile(archive) as zip_ref:
                 zip_ref.extractall(appdir.as_posix())
-    except Exception:
+    else:
         import tarfile
         async with platform.fopen("neon-street-racer.tar.gz", "rb") as archive:
             tar = tarfile.open(fileobj=archive, mode="r:gz")
-            tar.extractall(path=appdir.as_posix())
+            tar.extractall(path=appdir.as_posix(), filter='tar')
             tar.close()
 
     # preloader will change to work dir and prepend it to sys.path
@@ -70,7 +70,7 @@ async def custom_site():
         __import__(__name__).__file__ = main
 
         # now make a prompt
-        msg  = "🎮 Click Here to Play Neon Racer! 🎮"
+        msg  = "Ready to start ! Please click/touch page"
         platform.window.infobox.innerText = msg
         print("\n"*4, f"    * Waiting for media user engagement. {msg} *" , "\n"*4)
 
@@ -205,24 +205,13 @@ function show_infobox() {
         }
 
         #infobox {
-            position: fixed;
-            background: linear-gradient(135deg, #ff007f, #00f0ff);
-            color: #ffffff;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            font-size: 18px;
+            position: fixed; /* center relative to viewport */
+            background: green;
+            color: blue;
             font-weight: bold;
-            padding: 16px 32px;
-            border-radius: 30px;
-            box-shadow: 0 0 20px rgba(0, 240, 255, 0.7);
-            cursor: pointer;
-            text-align: center;
-            letter-spacing: 1px;
+            padding: 12px 24px;
+ /*           display: none; */
             z-index: 999999;
-            transition: all 0.2s ease;
-        }
-        #infobox:hover {
-            transform: scale(1.06);
-            box-shadow: 0 0 35px rgba(255, 0, 127, 0.9);
         }
         div.emscripten { text-align: center; }
         div.emscripten_border { border: 1px solid black; }
@@ -250,8 +239,8 @@ function show_infobox() {
         body {
             font-family: arial;
             margin: 0;
-            padding: 0;
-            background-color: #0d0f18;
+            padding: none;
+            background-color:powderblue;
         }
 
         .topright{
