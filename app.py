@@ -1,3 +1,3 @@
 def app(environ, start_response):
     start_response("200 OK", [("Content-Type", "text/plain")])
-    return [b"Neon Street Racer API"]
+    return [b"Neon Street Racer"]
