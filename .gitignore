@@ -57,5 +57,7 @@ htmlcov/
 *.tar.gz
 !build/web/*.tar.gz
 !build/web/*.apk
+!public/*.tar.gz
+!public/*.apk
 neon-street-racer.tar
 
