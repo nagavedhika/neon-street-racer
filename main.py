@@ -7,6 +7,7 @@ Run with:
     python3 main.py
 """
 
+import asyncio
 import sys
 import os
 
@@ -17,10 +18,10 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from src.game import Game  # noqa: E402
 
 
-def main():
+async def main():
     game = Game()
-    game.run()
+    await game.run()
 
 
 if __name__ == "__main__":
-    main()
+    asyncio.run(main())

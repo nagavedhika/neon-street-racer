@@ -8,7 +8,10 @@ __pycache__/
 
 # Distribution / packaging
 .Python
-build/
+build/*
+!build/web/
+!build/web/**
+build/web-cache/
 develop-eggs/
 dist/
 downloads/
@@ -52,5 +55,7 @@ htmlcov/
 # Docker archive exports and large binaries
 *.tar
 *.tar.gz
+!build/web/*.tar.gz
+!build/web/*.apk
 neon-street-racer.tar
 

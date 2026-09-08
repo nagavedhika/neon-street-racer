@@ -6,6 +6,7 @@ together the road, player, enemies, power-ups, particles, HUD, menus
 and audio into a single cohesive game loop.
 """
 
+import asyncio
 import random
 import pygame
 
@@ -79,7 +80,7 @@ class Game:
     # ------------------------------------------------------------------
     # Main loop
     # ------------------------------------------------------------------
-    def run(self):
+    async def run(self):
         while self.running:
             dt = self.clock.tick(settings.FPS) / 1000.0
             dt = min(dt, 0.05)  # clamp to avoid huge steps if the window stalls
@@ -87,6 +88,7 @@ class Game:
             self._handle_events()
             self._update(dt)
             self._draw()
+            await asyncio.sleep(0)
 
         self._shutdown()
 
