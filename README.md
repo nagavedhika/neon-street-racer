@@ -124,21 +124,34 @@ it needs a normal internet connection the first time (results are
 cached locally after that). Leave this running and open
 `http://localhost:8000` in your browser to play.
 
-### 3. Deploy the build to Vercel
+### 3. Deploy to Vercel
 
-Once `build/web/` exists, that folder is a complete static site — no
-server, no build step, just files. Deploy it as-is:
+This repo already ships a **ready-to-deploy `public/` folder** (the
+compiled `index.html`, `neon-street-racer.apk`, `neon-street-racer.tar.gz`,
+`favicon.png`) plus a `vercel.json` that points Vercel's output
+directory at it and sets the correct `Content-Type`/cache headers for
+the `.apk`/`.tar.gz` payloads — Vercel's default guess for those
+extensions is wrong, and that mismatch is exactly what caused earlier
+deploys to hang on the loading screen. With this `vercel.json` in
+place, just:
 
 ```bash
-cd build/web
 npx vercel --prod
 ```
 
-Or push `build/web`'s contents to a GitHub repo and import it in the
-Vercel dashboard with framework preset **Other**, build command and
-output directory left blank. Either way, Vercel is just serving static
-files (HTML/JS/WASM), so there's no risk of it hanging on "loading"
-the way a raw Python script would if deployed directly.
+from the repo root, or import the repo in the Vercel dashboard
+(framework preset **Other** — `vercel.json` handles the rest).
+
+**If you change the game and need to rebuild `public/`:**
+
+```bash
+pip install pygbag
+python3 -m pygbag --archive --build .   # writes build/web/
+cp build/web/index.html build/web/favicon.png \
+   build/web/*.apk build/web/*.tar.gz public/
+```
+
+Then commit and push the updated `public/` folder.
 
 ## Project Structure
 
