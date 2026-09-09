@@ -1,9 +1,9 @@
-"""
+'''
 road.py
 Draws the scrolling highway: grass, road surface, edge glow and
 dashed lane markings. All road art is generated procedurally with
 pygame primitives, no external image assets required.
-"""
+'''
 
 import pygame
 

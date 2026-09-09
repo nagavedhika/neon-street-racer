@@ -1,10 +1,10 @@
-"""
+'''
 game.py
 Top-level Game class: owns the pygame window, the state machine
 (main menu / instructions / playing / paused / game over), and wires
 together the road, player, enemies, power-ups, particles, HUD, menus
 and audio into a single cohesive game loop.
-"""
+'''
 
 import random
 import asyncio

@@ -1,9 +1,9 @@
-"""
+'''
 highscore.py
 Loads and saves the local high score as JSON in the user-writable
 data/ directory. Fails gracefully (falls back to 0 / in-memory only)
 if the file is missing, corrupted, or the directory is not writable.
-"""
+'''
 
 import json
 import os

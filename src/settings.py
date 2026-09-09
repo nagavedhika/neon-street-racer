@@ -1,8 +1,8 @@
-"""
+'''
 settings.py
 Central configuration for Neon Street Racer.
 All tunable constants live here so gameplay can be balanced in one place.
-"""
+'''
 
 import os
 

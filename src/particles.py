@@ -1,9 +1,9 @@
-"""
+'''
 particles.py
 A lightweight particle system used for speed lines, nitro flame trails,
 collision sparks and power-up sparkles. Designed to be cheap to update
 and draw so it stays smooth even on modest hardware.
-"""
+'''
 
 import random
 import pygame
@@ -51,7 +51,7 @@ class Particle:
 
 
 class ParticleSystem:
-    """Manages a pool of particles with a soft cap to avoid unbounded growth."""
+    '''Manages a pool of particles with a soft cap to avoid unbounded growth.'''
 
     def __init__(self, max_particles=settings.MAX_PARTICLES):
         self.particles = []
@@ -64,7 +64,7 @@ class ParticleSystem:
         self.particles.append(particle)
 
     def emit_speed_lines(self, x, y, speed_factor):
-        """Streaks that fly past the player to sell a sense of speed."""
+        '''Streaks that fly past the player to sell a sense of speed.'''
         if speed_factor < 0.35:
             return
         if random.random() < speed_factor * 0.6:

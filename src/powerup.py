@@ -1,8 +1,8 @@
-"""
+'''
 powerup.py
 Random power-up pickups that scroll down the road: nitro boost,
 shield, and repair (extra life). Includes spawn timing and rendering.
-"""
+'''
 
 import math
 import random

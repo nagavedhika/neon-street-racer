@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-"""
+'''
 main.py
 Entry point for Neon Street Racer.
 
 Run with:
     python3 main.py
-"""
+'''
 
 import sys
 import os

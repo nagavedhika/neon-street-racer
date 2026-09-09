@@ -144,13 +144,16 @@ fs_decode('README.md','''
 ūĘŞŧŪĘŨŝŪūŧŦřŤĤĘŝŜŭśřŬšŧŦřŤĤĘřŦŜĂŨŧŪŬŞŧŤšŧĘŭūŝĦĘĹŤŤĘśŧŜŝĘřŦŜĘŨŪŧśŝŜŭŪřŤŤűĘşŝŦŝŪ
 řŬŝŜĘřūūŝŬūĘřŪŝĘŧŪšşšŦřŤĂřŦŜĘŞŪŝŝĘŧŞĘŬŠšŪŜĥŨřŪŬűĘśŧŨűŪšşŠŬŝŜĘťřŬŝŪšřŤĦĂ''')
 
+fs_decode('data/highscore.json','''
+ųĚŠšşŠŗūśŧŪŝĚĲĘĭİĦĬıııııııııııĮĪŵ''')
+
 with open("src/road.py","w") as fs:fs.write("""\
-"""
+'''
 road.py
 Draws the scrolling highway: grass, road surface, edge glow and
 dashed lane markings. All road art is generated procedurally with
 pygame primitives, no external image assets required.
-"""
+'''
 
 import pygame
 
@@ -230,12 +233,12 @@ class Road:
 
 
 with open("src/menu.py","w") as fs:fs.write("""\
-"""
+'''
 menu.py
 Menu screens: main menu, instructions, pause overlay and game over screen.
 Handles simple keyboard-driven selection (Up/Down + Enter) with a subtle
 animated neon backdrop, procedurally generated (no external assets).
-"""
+'''
 
 import math
 import random
@@ -245,7 +248,7 @@ from src import settings
 
 
 class AnimatedBackdrop:
-    """A slow-drifting field of neon dots used behind menu screens."""
+    '''A slow-drifting field of neon dots used behind menu screens.'''
 
     def __init__(self, count=60):
         self.stars = []
@@ -418,14 +421,14 @@ class Menu:
 
 
 with open("src/audio.py","w") as fs:fs.write("""\
-"""
+'''
 audio.py
 Generates simple original sound effects procedurally at startup using
 pure Python + pygame's sndarray (no external audio files, no internet
 access required). If the mixer or sndarray backend is unavailable
 (e.g. no audio device in a headless/container environment) every method
 degrades to a harmless no-op so the game still runs correctly.
-"""
+'''
 
 import array
 import math
@@ -585,13 +588,13 @@ class AudioEngine:
 
 
 with open("src/hud.py","w") as fs:fs.write("""\
-"""
+'''
 hud.py
 On-screen heads-up display during gameplay: score, high score, distance,
 lives, and the nitro meter. Also renders the pause overlay and game over
 screen contents (layout logic lives in menu.py; this module supplies the
 reusable HUD widgets).
-"""
+'''
 
 import pygame
 
@@ -701,11 +704,11 @@ with open("src/__init__.py","w") as fs:fs.write("""\
 
 
 with open("src/settings.py","w") as fs:fs.write("""\
-"""
+'''
 settings.py
 Central configuration for Neon Street Racer.
 All tunable constants live here so gameplay can be balanced in one place.
-"""
+'''
 
 import os
 
@@ -848,13 +851,13 @@ STATE_QUIT = "quit"
 
 
 with open("src/game.py","w") as fs:fs.write("""\
-"""
+'''
 game.py
 Top-level Game class: owns the pygame window, the state machine
 (main menu / instructions / playing / paused / game over), and wires
 together the road, player, enemies, power-ups, particles, HUD, menus
 and audio into a single cohesive game loop.
-"""
+'''
 
 import random
 import asyncio
@@ -1202,12 +1205,12 @@ class Game:
 
 
 with open("src/particles.py","w") as fs:fs.write("""\
-"""
+'''
 particles.py
 A lightweight particle system used for speed lines, nitro flame trails,
 collision sparks and power-up sparkles. Designed to be cheap to update
 and draw so it stays smooth even on modest hardware.
-"""
+'''
 
 import random
 import pygame
@@ -1255,7 +1258,7 @@ class Particle:
 
 
 class ParticleSystem:
-    """Manages a pool of particles with a soft cap to avoid unbounded growth."""
+    '''Manages a pool of particles with a soft cap to avoid unbounded growth.'''
 
     def __init__(self, max_particles=settings.MAX_PARTICLES):
         self.particles = []
@@ -1268,7 +1271,7 @@ class ParticleSystem:
         self.particles.append(particle)
 
     def emit_speed_lines(self, x, y, speed_factor):
-        """Streaks that fly past the player to sell a sense of speed."""
+        '''Streaks that fly past the player to sell a sense of speed.'''
         if speed_factor < 0.35:
             return
         if random.random() < speed_factor * 0.6:
@@ -1344,12 +1347,12 @@ class ParticleSystem:
 
 
 with open("src/highscore.py","w") as fs:fs.write("""\
-"""
+'''
 highscore.py
 Loads and saves the local high score as JSON in the user-writable
 data/ directory. Fails gracefully (falls back to 0 / in-memory only)
 if the file is missing, corrupted, or the directory is not writable.
-"""
+'''
 
 import json
 import os
@@ -1380,12 +1383,12 @@ def save_high_score(value):
 
 
 with open("src/player.py","w") as fs:fs.write("""\
-"""
+'''
 player.py
 Player-controlled car: movement physics (acceleration, braking, steering
 with inertia), nitro boost, shield/power-up state, collision handling and
 procedural rendering of a neon sports car sprite.
-"""
+'''
 
 import math
 import pygame
@@ -1394,7 +1397,7 @@ from src import settings
 
 
 def build_car_surface(width, height, body_color, glow_color, window_color=(20, 24, 34)):
-    """Procedurally builds a small top-down car sprite with a neon glow."""
+    '''Procedurally builds a small top-down car sprite with a neon glow.'''
     pad = 14
     surf = pygame.Surface((width + pad * 2, height + pad * 2), pygame.SRCALPHA)
     cx = surf.get_width() // 2
@@ -1566,7 +1569,7 @@ class Player:
             self.lives = min(settings.PLAYER_START_LIVES, self.lives + 1)
 
     def take_hit(self):
-        """Returns True if the hit actually damaged the player (not invulnerable)."""
+        '''Returns True if the hit actually damaged the player (not invulnerable).'''
         if self.is_invulnerable:
             return False
         self.lives -= 1
@@ -1614,17 +1617,17 @@ class Player:
             surface.blit(tint, rect, special_flags=pygame.BLEND_RGBA_ADD)
 
     def speed_factor(self):
-        """Normalized 0..1+ speed used for visual effects like speed lines."""
+        '''Normalized 0..1+ speed used for visual effects like speed lines.'''
         return max(0.0, self.speed / settings.PLAYER_MAX_SPEED)
 """)
 
 
 with open("src/enemy.py","w") as fs:fs.write("""\
-"""
+'''
 enemy.py
 Enemy traffic: spawning logic (random lane, speed, fair gap-checking),
 movement relative to the player's world speed, and rendering.
-"""
+'''
 
 import random
 import pygame
@@ -1693,7 +1696,7 @@ class EnemyManager:
         self.elapsed = 0.0
 
     def _difficulty_ramp(self):
-        """0..1 progress toward maximum difficulty."""
+        '''0..1 progress toward maximum difficulty.'''
         return min(1.0, self.elapsed / settings.DIFFICULTY_RAMP_TIME)
 
     def _current_spawn_interval(self):
@@ -1736,10 +1739,10 @@ class EnemyManager:
         # to avoid an unfair pile-up at the spawn line.
 
     def _ensure_fair_start(self, player_lane):
-        """Guarantees the player's current lane is never instantly blocked
+        '''Guarantees the player's current lane is never instantly blocked
         right after a spawn by nudging the spawn choice away from a
         too-close same-lane enemy. Used implicitly via the min-gap check;
-        kept as a hook for future fairness tuning."""
+        kept as a hook for future fairness tuning.'''
         return True
 
     def update(self, dt, world_speed, player):
@@ -1775,11 +1778,11 @@ class EnemyManager:
 
 
 with open("src/powerup.py","w") as fs:fs.write("""\
-"""
+'''
 powerup.py
 Random power-up pickups that scroll down the road: nitro boost,
 shield, and repair (extra life). Includes spawn timing and rendering.
-"""
+'''
 
 import math
 import random
@@ -1913,9 +1916,6 @@ class PowerUpManager:
         return collected
 """)
 
-
-fs_decode('data/highscore.json','''
-ųĚŠšşŠŗūśŧŪŝĚĲĘĭİĦĬıııııııııııĮĪŵ''')
 
 # fmt:on
 del fs_decode, PYGBAG_FS

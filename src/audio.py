@@ -1,11 +1,11 @@
-"""
+'''
 audio.py
 Generates simple original sound effects procedurally at startup using
 pure Python + pygame's sndarray (no external audio files, no internet
 access required). If the mixer or sndarray backend is unavailable
 (e.g. no audio device in a headless/container environment) every method
 degrades to a harmless no-op so the game still runs correctly.
-"""
+'''
 
 import array
 import math

@@ -1,9 +1,9 @@
-"""
+'''
 menu.py
 Menu screens: main menu, instructions, pause overlay and game over screen.
 Handles simple keyboard-driven selection (Up/Down + Enter) with a subtle
 animated neon backdrop, procedurally generated (no external assets).
-"""
+'''
 
 import math
 import random
@@ -13,7 +13,7 @@ from src import settings
 
 
 class AnimatedBackdrop:
-    """A slow-drifting field of neon dots used behind menu screens."""
+    '''A slow-drifting field of neon dots used behind menu screens.'''
 
     def __init__(self, count=60):
         self.stars = []

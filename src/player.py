@@ -1,9 +1,9 @@
-"""
+'''
 player.py
 Player-controlled car: movement physics (acceleration, braking, steering
 with inertia), nitro boost, shield/power-up state, collision handling and
 procedural rendering of a neon sports car sprite.
-"""
+'''
 
 import math
 import pygame
@@ -12,7 +12,7 @@ from src import settings
 
 
 def build_car_surface(width, height, body_color, glow_color, window_color=(20, 24, 34)):
-    """Procedurally builds a small top-down car sprite with a neon glow."""
+    '''Procedurally builds a small top-down car sprite with a neon glow.'''
     pad = 14
     surf = pygame.Surface((width + pad * 2, height + pad * 2), pygame.SRCALPHA)
     cx = surf.get_width() // 2
@@ -184,7 +184,7 @@ class Player:
             self.lives = min(settings.PLAYER_START_LIVES, self.lives + 1)
 
     def take_hit(self):
-        """Returns True if the hit actually damaged the player (not invulnerable)."""
+        '''Returns True if the hit actually damaged the player (not invulnerable).'''
         if self.is_invulnerable:
             return False
         self.lives -= 1
@@ -232,5 +232,5 @@ class Player:
             surface.blit(tint, rect, special_flags=pygame.BLEND_RGBA_ADD)
 
     def speed_factor(self):
-        """Normalized 0..1+ speed used for visual effects like speed lines."""
+        '''Normalized 0..1+ speed used for visual effects like speed lines.'''
         return max(0.0, self.speed / settings.PLAYER_MAX_SPEED)

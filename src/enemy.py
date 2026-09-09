@@ -1,8 +1,8 @@
-"""
+'''
 enemy.py
 Enemy traffic: spawning logic (random lane, speed, fair gap-checking),
 movement relative to the player's world speed, and rendering.
-"""
+'''
 
 import random
 import pygame
@@ -71,7 +71,7 @@ class EnemyManager:
         self.elapsed = 0.0
 
     def _difficulty_ramp(self):
-        """0..1 progress toward maximum difficulty."""
+        '''0..1 progress toward maximum difficulty.'''
         return min(1.0, self.elapsed / settings.DIFFICULTY_RAMP_TIME)
 
     def _current_spawn_interval(self):
@@ -114,10 +114,10 @@ class EnemyManager:
         # to avoid an unfair pile-up at the spawn line.
 
     def _ensure_fair_start(self, player_lane):
-        """Guarantees the player's current lane is never instantly blocked
+        '''Guarantees the player's current lane is never instantly blocked
         right after a spawn by nudging the spawn choice away from a
         too-close same-lane enemy. Used implicitly via the min-gap check;
-        kept as a hook for future fairness tuning."""
+        kept as a hook for future fairness tuning.'''
         return True
 
     def update(self, dt, world_speed, player):

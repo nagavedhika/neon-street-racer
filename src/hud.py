@@ -1,10 +1,10 @@
-"""
+'''
 hud.py
 On-screen heads-up display during gameplay: score, high score, distance,
 lives, and the nitro meter. Also renders the pause overlay and game over
 screen contents (layout logic lives in menu.py; this module supplies the
 reusable HUD widgets).
-"""
+'''
 
 import pygame
 
