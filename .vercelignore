@@ -4,3 +4,13 @@ venv/
 __pycache__/
 *.pyc
 build/web-cache/
+
+# Desktop-only Pygame source — not needed for the static Vercel
+# deployment (public/ is fully self-contained), and their presence
+# at the repo root was making Vercel auto-detect this as a Python
+# serverless project and try to run main.py as a function handler.
+main.py
+src/
+requirements.txt
+data/
+assets/
