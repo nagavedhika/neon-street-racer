@@ -1,438 +1,1925 @@
-<html lang="en-us"><script src="https://pygame-web.github.io/cdn/0.9.3/pythons.js" type=module id="site" data-python="python3.12" data-LINES=42 data-COLUMNS=132 data-os="vtx,snd,gui" async defer>#<!--
+<html><head><meta charset="utf-8"></head><script src="https://pygame-web.github.io/cdn/0.9.3/pythons.js" data-os="vtx,fs,gui" type=module id="__main__" async defer>#<!--
+PYGBAG_FS=16
+# fmt: off
+__import__('os').chdir(__import__('tempfile').gettempdir())
+def fs_decode(fsname, o248):
+    from pathlib import Path
+    filename = Path.cwd() / fsname
+    if not filename.is_file():
+        filename.parent.mkdir(parents=True, exist_ok=True)
+        with open(fsname,"wb") as fs:
+            for input in o248.split("\n"):
+                if not input: continue
+                fs.write(bytes([ord(c) - 248 for c in input]))
 
-print("""
-Loading neon-street-racer from neon-street-racer.apk
-    Pygbag Version : 0.9.3
-    Template Version : 0.9.3
-    Python  : 3.12
-    CDN URL : https://pygame-web.github.io/cdn/0.9.3/
-    Screen  : 1280x720
-    Title   : neon-street-racer
-    Folder  : neon-street-racer
-    Authors : pgw
-    SPDX-License-Identifier: cookiecutter.spdx
+fs_decode('requirements.txt','''
+ŨűşřťŝĶĵĪĦĭĦĨĤĴīĦĨĦĨĂ''')
 
+fs_decode('README.md','''
+ěĘņŝŧŦĘŋŬŪŝŝŬĘŊřśŝŪĂĂĹĘŨŧŤšūŠŝŜĘĪļĘŬŧŨĥŜŧůŦĘŦŝŧŦĘřŪśřŜŝĘŠšşŠůřűĘŪřśŝŪĘŚŭšŤŬĘůšŬ
+ŠĘňűŬŠŧŦĘřŦŜĂňűşřťŝĦĘļŧŜşŝĘŬŪřŞŞšśĤĘşŪřŚĘŨŧůŝŪĥŭŨūĤĘŚŭŪŦĘŦšŬŪŧĤĘřŦŜĘśŠřūŝĘřĘŠšş
+ŠĂūśŧŪŝĘŬŠřŬğūĘūřŮŝŜĘŤŧśřŤŤűĘŚŝŬůŝŝŦĘŪŭŦūĦĘĹŤŤĘŮšūŭřŤūĘřŦŜĘūŧŭŦŜūĘřŪŝĂşŝŦŝŪřŬŝŜ
+ĘŨŪŧśŝŜŭŪřŤŤűĘšŦĘśŧŜŝĘǚŸƌĘŦŧĘŝŰŬŝŪŦřŤĘšťřşŝĘŧŪĘřŭŜšŧĘŞšŤŝūĘřŪŝĂŪŝũŭšŪŝŜĤĘřŦŜĘŬŠ
+ŝĘşřťŝĘŦŝŝŜūĘŦŧĘšŦŬŝŪŦŝŬĘřśśŝūūĘŬŧĘŪŭŦĦĂĂěěĘļŝūśŪšŨŬšŧŦĂĂőŧŭĘŜŪšŮŝĘřĘŦŝŧŦĘūŨŧŪŬ
+ūĘśřŪĘŭŨĘřĘŮŝŪŬšśřŤŤűĘūśŪŧŤŤšŦşĘŞŧŭŪĥŤřŦŝĂŠšşŠůřűĦĘŌŪřŞŞšśĘūŨřůŦūĘřŠŝřŜĘŧŞĘűŧŭĘ
+řŦŜĘśŤŧūŝūĘšŦĘřūĘűŧŭĘŜŪšŮŝĳĂůŝřŮŝĘŚŝŬůŝŝŦĘŤřŦŝūĘŬŧĘřŮŧšŜĘśŧŤŤšūšŧŦūĤĘśŧŤŤŝśŬĘŨŧ
+ůŝŪĥŭŨūĤĘřŦŜĘŚŭŪŦĂŦšŬŪŧĘŞŧŪĘŚŭŪūŬūĘŧŞĘūŨŝŝŜĦĘŌŠŝĘŤŧŦşŝŪĘűŧŭĘūŭŪŮšŮŝĘřŦŜĘŬŠŝĘŞŭŪ
+ŬŠŝŪĘűŧŭĂŜŪšŮŝĤĘŬŠŝĘŠšşŠŝŪĘűŧŭŪĘūśŧŪŝĘśŤšťŚūĘǚŸƌĘřŦŜĘŬŠŝĘŠřŪŜŝŪĘŬŠŝĘŬŪřŞŞšśĘşŝŬ
+ūĦĂĂěěĘľŝřŬŭŪŝūĂĂĥĘŋťŧŧŬŠĤĘšŦŝŪŬšřĥŚřūŝŜĘśřŪĘŨŠűūšśūĘĠřśśŝŤŝŪřŬšŧŦĤĘŚŪřţšŦşĤĘūŬ
+ŝŝŪšŦşġĂĥĘľŧŭŪĥŤřŦŝĘūśŪŧŤŤšŦşĘŠšşŠůřűĘůšŬŠĘřŦšťřŬŝŜĘŤřŦŝĘťřŪţšŦşūĘřŦŜĘşŤŧůšŦşĂĘ
+ĘŪŧřŜĘŝŜşŝūĂĥĘĽŦŝťűĘŬŪřŞŞšśĘůšŬŠĘŪřŦŜŧťĘŤřŦŝĘūŝŤŝśŬšŧŦĤĘŮřŪšŝŜĘūŨŝŝŜūĤĘřŦŜĂĘĘŞř
+šŪŦŝūūĘśŠŝśţūĘūŧĘūŨřůŦūĘŦŝŮŝŪĘŬŪřŨĘŬŠŝĘŨŤřűŝŪĘŭŦŞřšŪŤűĂĥĘňŪŧşŪŝūūšŮŝĘŜšŞŞšśŭŤŬű
+ĲĘŬŪřŞŞšśĘşŝŬūĘŞřūŬŝŪĘřŦŜĘŜŝŦūŝŪĘŧŮŝŪĘŬšťŝĂĥĘĻŧŤŤšūšŧŦĘūűūŬŝťĘůšŬŠĘŚŪšŝŞĘšŦŮŭŤŦ
+ŝŪřŚšŤšŬűĘřŦŜĘŮšūŭřŤħřŭŜšŧĘŞŝŝŜŚřśţĂĥĘŌŠŪŝŝĘŨŧůŝŪĥŭŨūĲĘĢĢĺŧŧūŬĢĢĤĘĢĢŋŠšŝŤŜĢĢĤĘř
+ŦŜĘĢĢŊŝŨřšŪĢĢĂĥĘņšŬŪŧĘŚŧŧūŬĘūűūŬŝťĘůšŬŠĘřĘŪŝşŝŦŝŪřŬšŦşĘťŝŬŝŪĘĠŘŋňĹĻĽŘġĂĥĘļšūŬřŦ
+śŝĥŚřūŝŜĘūśŧŪšŦşĘůšŬŠĘřĘŚŧŦŭūĘŞŧŪĘŨřūūšŦşĘŝŦŝťűĘśřŪūĂĥĘńŧśřŤŤűĘŨŝŪūšūŬŝŜĘŠšşŠĘū
+śŧŪŝĘĠŘŜřŬřħŠšşŠūśŧŪŝĦŢūŧŦŘġĂĥĘľŭŤŤĘťŝŦŭĘŞŤŧůĲĘŅřšŦĘŅŝŦŭĤĘŁŦūŬŪŭśŬšŧŦūĤĘňřŭūŝĤĘ
+řŦŜĘĿřťŝĘŇŮŝŪĘūśŪŝŝŦūĂĥĘňŪŧśŝŜŭŪřŤŤűĘşŝŦŝŪřŬŝŜĘŦŝŧŦĘŮšūŭřŤūĘĠśřŪūĤĘşŤŧůĘŝŞŞŝśŬū
+ĤĘŨřŪŬšśŤŝūĤĂĘĘūŨŝŝŜĘŤšŦŝūĤĘūśŪŝŝŦĘūŠřţŝġĘřŦŜĘŨŪŧśŝŜŭŪřŤŤűĘūűŦŬŠŝūšŲŝŜĘūŧŭŦŜĂĘĘ
+ŝŞŞŝśŬūĘǚŸƌĘŦŧŬŠšŦşĘŬŧĘŜŧůŦŤŧřŜĤĘŦŧŬŠšŦşĘśŧŨűŪšşŠŬŝŜĂĥĘŊŭŦūĘūřŞŝŤűĘŝŮŝŦĘůšŬŠĘŦŧ
+ĘřŭŜšŧĘŜŝŮšśŝĘřŮřšŤřŚŤŝĘĠūšŤŝŦŬĘŞřŤŤŚřśţġĂĥĘŏšŦŜŧůĘśřŦĘŚŝĘŪŝūšŲŝŜĳĘŬŠŝĘşřťŝĘūśř
+ŤŝūĘŬŧĘŞšŬĘůŠšŤŝĘţŝŝŨšŦşĘšŬūĂĘĘřūŨŝśŬĘŪřŬšŧĂĂěěĘĻŧŦŬŪŧŤūĂĂŴĘŃŝűĘĘĘĘĘĘĘĘĘĘĘĘĘĘĘĘ
+ĘĘŴĘĹśŬšŧŦĘĘĘĘĘĘĘĘĘĘĘĘĘĘĘĘĘĘĘĘĘĘĘĘŴĂŴĥĥĥĥĥĥĥĥĥĥĥĥĥĥĥĥĥĥĥĥĥĥĥŴĥĥĥĥĥĥĥĥĥĥĥĥĥĥĥĥĥĥ
+ĥĥĥĥĥĥĥĥĥĥĥĥĥŴĂŴĘŘŏŘĘħĘŘōŨĘĹŪŪŧůŘĘĘĘĘĘĘĘŴĘĹśśŝŤŝŪřŬŝĘĘĘĘĘĘĘĘĘĘĘĘĘĘĘĘĘĘĘĘŴĂŴĘŘŋŘ
+ĘħĘŘļŧůŦĘĹŪŪŧůŘĘĘĘĘĘŴĘĺŪřţŝĘħĘŊŝŮŝŪūŝĘĘĘĘĘĘĘĘĘĘĘĘĘĘĘŴĂŴĘŘĹŘĘħĘŘńŝŞŬĘĹŪŪŧůŘĘĘĘĘĘ
+ŴĘŋŬŝŝŪĘŤŝŞŬĘĘĘĘĘĘĘĘĘĘĘĘĘĘĘĘĘĘĘĘŴĂŴĘŘļŘĘħĘŘŊšşŠŬĘĹŪŪŧůŘĘĘĘĘŴĘŋŬŝŝŪĘŪšşŠŬĘĘĘĘĘĘĘ
+ĘĘĘĘĘĘĘĘĘĘĘĘŴĂŴĘŘŋňĹĻĽŘĘĘĘĘĘĘĘĘĘĘĘĘĘĘĘĘŴĘņšŬŪŧĘŚŧŧūŬĘĘĘĘĘĘĘĘĘĘĘĘĘĘĘĘĘĘĘŴĂŴĘŘĽŋĻ
+ŘĘĘĘĘĘĘĘĘĘĘĘĘĘĘĘĘĘĘŴĘňřŭūŝĘħĘŪŝŬŭŪŦĘŞŪŧťĘťŝŦŭūĘĘĘĘĘŴĂŴĘŘŊŘĘĘĘĘĘĘĘĘĘĘĘĘĘĘĘĘĘĘĘĘŴ
+ĘŉŭšśţĥŪŝūŬřŪŬĘřŞŬŝŪĘĿřťŝĘŇŮŝŪĘŴĂŴĘŘōŨŘĘħĘŘļŧůŦŘĘģĘŘĽŦŬŝŪŘŴĘņřŮšşřŬŝĘťŝŦŭūĘĘĘĘĘ
+ĘĘĘĘĘĘĘĘĘĘĘŴĂĂěěĘŊŝũŭšŪŝťŝŦŬūĂĂĥĘňűŬŠŧŦĘīĦİĘŧŪĘŦŝůŝŪĂĥĘŘŨűşřťŝŘĘĠūŝŝĘŘŪŝũŭšŪŝťŝ
+ŦŬūĦŬŰŬŘġĂĥĘĹĘńšŦŭŰĘŜŝūţŬŧŨĘŝŦŮšŪŧŦťŝŦŬĘůšŬŠĘřĘşŪřŨŠšśřŤĘŜšūŨŤřűĘĠŐĩĩĘŧŪĂĘĘśŧťŨ
+řŬšŚŤŝġĦĘŃřŤšĘńšŦŭŰĘšūĘŞŭŤŤűĘūŭŨŨŧŪŬŝŜĦĂĂěěĘŁŦūŬřŤŤřŬšŧŦĂĂŘŘŘŚřūŠĂūŭŜŧĘřŨŬĘŭŨŜř
+ŬŝĂūŭŜŧĘřŨŬĘšŦūŬřŤŤĘŨűŬŠŧŦīĘŨűŬŠŧŦīĥŨšŨĂĂěĘľŪŧťĘŬŠŝĘŨŪŧŢŝśŬĘŪŧŧŬĲĂŨűŬŠŧŦīĘĥťĘŨš
+ŨĘšŦūŬřŤŤĘĥŪĘŪŝũŭšŪŝťŝŦŬūĦŬŰŬĂŘŘŘĂĂŁŞĘűŧŭŪĘŜšūŬŪšŚŭŬšŧŦğūĘňűŬŠŧŦĘšūĘŝŰŬŝŪŦřŤŤűĘ
+ťřŦřşŝŜĘřŦŜĘŨšŨĘŪŝŞŭūŝūĘřĂūűūŬŝťĥůšŜŝĘšŦūŬřŤŤĤĘŭūŝĘřĘŮšŪŬŭřŤĘŝŦŮšŪŧŦťŝŦŬĘšŦūŬŝř
+ŜĲĂĂŘŘŘŚřūŠĂŨűŬŠŧŦīĘĥťĘŮŝŦŮĘŮŝŦŮĂūŧŭŪśŝĘŮŝŦŮħŚšŦħřśŬšŮřŬŝĂŨšŨĘšŦūŬřŤŤĘĥŪĘŪŝũŭšŪ
+ŝťŝŦŬūĦŬŰŬĂŘŘŘĂĂěěĘŀŧůĘŬŧĘŊŭŦĘŧŦĘŃřŤšĘńšŦŭŰĂĂŘŘŘŚřūŠĂśŜĘŦŝŧŦĥūŬŪŝŝŬĥŪřśŝŪĂŨűŬŠŧ
+ŦīĘťřšŦĦŨűĂŘŘŘĂĂŌŠŝĘşřťŝĘŧŨŝŦūĘšŦĘřĘūŬřŦŜřŪŜĘşŪřŨŠšśřŤĘůšŦŜŧůĘřŬĘĩĪİĨŰįĪĨĦĘŁŞĘű
+ŧŭĂšŦūŬřŤŤŝŜĘšŦŬŧĘřĘŮšŪŬŭřŤĘŝŦŮšŪŧŦťŝŦŬĤĘřśŬšŮřŬŝĘšŬĘŞšŪūŬĂĠŘūŧŭŪśŝĘŮŝŦŮħŚšŦħřś
+ŬšŮřŬŝŘġĘŚŝŞŧŪŝĘŪŭŦŦšŦşĘŘťřšŦĦŨűŘĦĂĂěěĘŊŭŦŦšŦşĘšŦĘřĘŚŪŧůūŝŪĘĠŤŧśřŤŠŧūŬġĘřŦŜĘŜŝŨ
+ŤŧűšŦşĘŬŧĘŎŝŪśŝŤĂĂŌŠšūĘšūĘūŬšŤŤĘŬŠŝĘŝŰřśŬĘūřťŝĘşřťŝħśŧŜŝĘǚŸƌĘŘťřšŦĦŨűŘĘřŦŜĘŘūŪś
+ħşřťŝĦŨűŘĂŧŦŤűĘŠřŜĘŬŠŝšŪĘťřšŦĘŤŧŧŨĘśŠřŦşŝŜĘŬŧĘŘřūűŦśŘħŘřůřšŬĘřūűŦśšŧĦūŤŝŝŨĠĨġŘĂ
+ŨŝŪĘŞŪřťŝĤĘůŠšśŠĘšūĘŪŝũŭšŪŝŜĘŚűĘœŨűşŚřşŕĠŠŬŬŨūĲħħşšŬŠŭŚĦśŧťħŨűşřťŝĥůŝŚħŨűşŚřşġĤ
+ĂŬŠŝĘŬŧŧŤĘŬŠřŬĘśŧťŨšŤŝūĘňűşřťŝĘŬŧĘŏŝŚĹūūŝťŚŤűĘūŧĘšŬĘśřŦĘŪŭŦĘšŦūšŜŝĘřĂŚŪŧůūŝŪĘŬř
+ŚĦĘŌŠřŬĘŧŦŝĘśŠřŦşŝĘšūĘřĘŦŧĥŧŨĘŧŦĘŜŝūţŬŧŨĘĠŘŨűŬŠŧŦīĘťřšŦĦŨűŘĂūŬšŤŤĘůŧŪţūĘŝŰřśŬŤű
+ĘřūĘŜŧśŭťŝŦŬŝŜĘřŚŧŮŝġĘřŦŜĘšūĘůŠřŬĘŤŝŬūĘŬŠŝĘūřťŝĂūŧŭŪśŝĘśŧťŨšŤŝĘŬŧĘŪŭŦĘšŦĘřĘŚŪŧů
+ūŝŪĦĂĂĢĢŁťŨŧŪŬřŦŬĲĢĢĘňűşřťŝĘšŬūŝŤŞĘšūĘřĘŦřŬšŮŝĘŜŝūţŬŧŨĘŞŪřťŝůŧŪţĘĠšŬĘŧŨŝŦūĘřĂŪŝ
+řŤĘŇŋĘůšŦŜŧůĘŮšřĘŋļńġĦĘŁŬĘśřŦŦŧŬĘŪŭŦĘŧŦĘŎŝŪśŝŤĤĘŧŪĘšŦĘřŦűĘŚŪŧůūŝŪĤĂůšŬŠŧŭŬĘřĘŏŝ
+ŚĹūūŝťŚŤűĘŚŭšŤŜĘǚŸƌĘŬŠŝŪŝĘšūĘŦŧĘůřűĘřŪŧŭŦŜĘŬŠřŬĘūŬŝŨĦĘŨűşŚřşĂšūĘůŠřŬĘŨŪŧŜŭśŝūĘŬ
+ŠřŬĘŚŭšŤŜĦĂĂěěěĘĩĦĘŁŦūŬřŤŤĘŨűşŚřşĘĠŧŦśŝġĂĂŘŘŘŚřūŠĂŨšŨĘšŦūŬřŤŤĘŨűşŚřşĂŘŘŘĂĂěěěĘĪ
+ĦĘĺŭšŤŜĘģĘŨŪŝŮšŝůĘřŬĘŤŧśřŤŠŧūŬĂĂľŪŧťĘŬŠŝĘŨŪŧŢŝśŬĘŪŧŧŬĲĂĂŘŘŘŚřūŠĂŨűŬŠŧŦīĘĥťĘŨűşŚ
+řşĘťřšŦĦŨűĂŘŘŘĂĂŌŠšūĘŜŧŝūĘŬůŧĘŬŠšŦşūĲĂĥĘĻŧťŨšŤŝūĘŬŠŝĘşřťŝĘŬŧĘŏŝŚĹūūŝťŚŤűĘšŦŬŧĘŘ
+ŚŭšŤŜħůŝŚħŘĂĥĘŋŝŪŮŝūĘŬŠřŬĘŞŧŤŜŝŪĘřŬĘĢĢŠŬŬŨĲħħŤŧśřŤŠŧūŬĲİĨĨĨĢĢĘūŧĘűŧŭĘśřŦĘŨŤřűĘš
+ŬĂĘĘšŦĘűŧŭŪĘŚŪŧůūŝŪĘšťťŝŜšřŬŝŤűĂĂŌŠŝĘŞšŪūŬĘŚŭšŤŜĘŜŧůŦŤŧřŜūĘŨűşŚřşğūĘŏĹŋŅĘŪŭŦŬšť
+ŝĘŞšŤŝūĘŞŪŧťĘšŬūĘĻļņĤĘūŧĂšŬĘŦŝŝŜūĘřĘŦŧŪťřŤĘšŦŬŝŪŦŝŬĘśŧŦŦŝśŬšŧŦĘŬŠŝĘŞšŪūŬĘŬšťŝĘĠ
+ŪŝūŭŤŬūĘřŪŝĂśřśŠŝŜĘŤŧśřŤŤűĘřŞŬŝŪĘŬŠřŬġĦĘńŝřŮŝĘŬŠšūĘŪŭŦŦšŦşĘřŦŜĘŧŨŝŦĂŘŠŬŬŨĲħħŤŧś
+řŤŠŧūŬĲİĨĨĨŘĘšŦĘűŧŭŪĘŚŪŧůūŝŪĘŬŧĘŨŤřűĦĂĂěěěĘīĦĘļŝŨŤŧűĘŬŠŝĘŚŭšŤŜĘŬŧĘŎŝŪśŝŤĂĂŇŦśŝĘ
+ŘŚŭšŤŜħůŝŚħŘĘŝŰšūŬūĤĘŬŠřŬĘŞŧŤŜŝŪĘšūĘřĘśŧťŨŤŝŬŝĘūŬřŬšśĘūšŬŝĘǚŸƌĘŦŧĂūŝŪŮŝŪĤĘŦŧĘŚŭ
+šŤŜĘūŬŝŨĤĘŢŭūŬĘŞšŤŝūĦĘļŝŨŤŧűĘšŬĘřūĥšūĲĂĂŘŘŘŚřūŠĂśŜĘŚŭšŤŜħůŝŚĂŦŨŰĘŮŝŪśŝŤĘĥĥŨŪŧŜĂ
+ŘŘŘĂĂŇŪĘŨŭūŠĘŘŚŭšŤŜħůŝŚŘğūĘśŧŦŬŝŦŬūĘŬŧĘřĘĿšŬŀŭŚĘŪŝŨŧĘřŦŜĘšťŨŧŪŬĘšŬĘšŦĘŬŠŝĂŎŝŪśŝ
+ŤĘŜřūŠŚŧřŪŜĘůšŬŠĘŞŪřťŝůŧŪţĘŨŪŝūŝŬĘĢĢŇŬŠŝŪĢĢĤĘŚŭšŤŜĘśŧťťřŦŜĘřŦŜĂŧŭŬŨŭŬĘŜšŪŝśŬŧŪű
+ĘŤŝŞŬĘŚŤřŦţĦĘĽšŬŠŝŪĘůřűĤĘŎŝŪśŝŤĘšūĘŢŭūŬĘūŝŪŮšŦşĘūŬřŬšśĂŞšŤŝūĘĠŀŌŅńħłŋħŏĹŋŅġĤĘūŧ
+ĘŬŠŝŪŝğūĘŦŧĘŪšūţĘŧŞĘšŬĘŠřŦşšŦşĘŧŦĘĚŤŧřŜšŦşĚĂŬŠŝĘůřűĘřĘŪřůĘňűŬŠŧŦĘūśŪšŨŬĘůŧŭŤŜĘš
+ŞĘŜŝŨŤŧűŝŜĘŜšŪŝśŬŤűĦĂĂěěĘňŪŧŢŝśŬĘŋŬŪŭśŬŭŪŝĂĂŘŘŘĂŦŝŧŦĥūŬŪŝŝŬĥŪřśŝŪħĂǚƌźĂǚƌƔǚƌŸǚƌ
+ŸĘťřšŦĦŨűĘĘĘĘĘĘĘĘĘĘĘĘĘĘĘĘěĘĽŦŬŪűĘŨŧšŦŬĂǚƌƔǚƌŸǚƌŸĘŪŝũŭšŪŝťŝŦŬūĦŬŰŬĘĘĘĘĘĘĘĘěĘňűŬŠ
+ŧŦĘŜŝŨŝŦŜŝŦśšŝūĂǚƌƔǚƌŸǚƌŸĘŊĽĹļŅĽĦťŜĂǚƌƔǚƌŸǚƌŸĘĦşšŬšşŦŧŪŝĂǚƌźĂǚƌƔǚƌŸǚƌŸĘřūūŝŬūħĂ
+ǚƌźĘĘĘǚƌƔǚƌŸǚƌŸĘšťřşŝūħĘĘĘĘĘĘĘĘĘĘĘĘĘěĘŊŝūŝŪŮŝŜĘŞŧŪĘŞŭŬŭŪŝĘŝŰŬŝŪŦřŤĘřŪŬĘĠŭŦŭūŝŜĘ
+ǚŸƌĂǚƌźĘĘĘǚƌźĘĘĘĘĘĘĘĘĘĘĘĘĘĘĘĘĘĘĘĘĘĘĘĘĘřŤŤĘŮšūŭřŤūĘřŪŝĘŜŪřůŦĘŨŪŧśŝŜŭŪřŤŤűġĂǚƌźĘĘ
+ĘǚƌƌǚƌŸǚƌŸĘūŧŭŦŜūħĘĘĘĘĘĘĘĘĘĘĘĘĘĘěĘŊŝūŝŪŮŝŜĘŞŧŪĘŞŭŬŭŪŝĘŝŰŬŝŪŦřŤĘřŭŜšŧĘĠŭŦŭūŝŜĘǚŸ
+ƌĂǚƌźĘĘĘĘĘĘĘĘĘĘĘĘĘĘĘĘĘĘĘĘĘĘĘĘĘĘĘĘĘřŤŤĘūŧŭŦŜĘŝŞŞŝśŬūĘřŪŝĘūűŦŬŠŝūšŲŝŜĘšŦĘśŧŜŝġĂǚƌ
+źĂǚƌƔǚƌŸǚƌŸĘŜřŬřħĂǚƌźĘĘĘǚƌƌǚƌŸǚƌŸĘŠšşŠūśŧŪŝĦŢūŧŦĘĘĘĘĘĘĘěĘňŝŪūšūŬŝŜĘŤŧśřŤĘŠšşŠĘū
+śŧŪŝĂǚƌźĂǚƌƌǚƌŸǚƌŸĘūŪśħĂĘĘĘĘǚƌƔǚƌŸǚƌŸĘŗŗšŦšŬŗŗĦŨűĂĘĘĘĘǚƌƔǚƌŸǚƌŸĘşřťŝĦŨűĘĘĘĘĘĘĘĘ
+ĘĘĘĘĘĘěĘŅřšŦĘşřťŝĘśŤřūūĤĘūŬřŬŝĘťřśŠšŦŝĤĘşřťŝĘŤŧŧŨĂĘĘĘĘǚƌƔǚƌŸǚƌŸĘŨŤřűŝŪĦŨűĘĘĘĘĘĘ
+ĘĘĘĘĘĘĘěĘňŤřűŝŪĘśřŪĘŨŠűūšśūĤĘŦšŬŪŧĤĘŨŧůŝŪĥŭŨĘūŬřŬŝĂĘĘĘĘǚƌƔǚƌŸǚƌŸĘŝŦŝťűĦŨűĘĘĘĘĘĘ
+ĘĘĘĘĘĘĘĘĘěĘĽŦŝťűĘŬŪřŞŞšśĘūŨřůŦšŦşĘřŦŜĘŚŝŠřŮšŧŪĂĘĘĘĘǚƌƔǚƌŸǚƌŸĘŪŧřŜĦŨűĘĘĘĘĘĘĘĘĘĘĘ
+ĘĘĘĘĘĘěĘŋśŪŧŤŤšŦşĘŪŧřŜĘŪŝŦŜŝŪšŦşĂĘĘĘĘǚƌƔǚƌŸǚƌŸĘŨŧůŝŪŭŨĦŨűĘĘĘĘĘĘĘĘĘĘĘĘĘĘĘěĘňŧůŝŪ
+ĥŭŨĘūŨřůŦšŦşĤĘŨšśţŭŨĤĘŪŝŦŜŝŪšŦşĂĘĘĘĘǚƌƔǚƌŸǚƌŸĘŨřŪŬšśŤŝūĦŨűĘĘĘĘĘĘĘĘĘĘĘĘĘĘěĘňřŪŬš
+śŤŝĘŝŞŞŝśŬūĘĠūŨŝŝŜĘŤšŦŝūĤĘūŨřŪţūĤĘŦšŬŪŧĘŞŤřťŝġĂĘĘĘĘǚƌƔǚƌŸǚƌŸĘŠŭŜĦŨűĘĘĘĘĘĘĘĘĘĘĘĘ
+ĘĘĘĘĘĘĘĘĘěĘŁŦĥşřťŝĘŀōļĘůšŜşŝŬūĂĘĘĘĘǚƌƔǚƌŸǚƌŸĘťŝŦŭĦŨűĘĘĘĘĘĘĘĘĘĘĘĘĘĘĘĘĘĘĘĘĘěĘŅřšŦ
+ĘťŝŦŭĤĘšŦūŬŪŭśŬšŧŦūĤĘŨřŭūŝĤĘşřťŝĘŧŮŝŪĘūśŪŝŝŦūĂĘĘĘĘǚƌƔǚƌŸǚƌŸĘřŭŜšŧĦŨűĘĘĘĘĘĘĘĘĘĘĘ
+ĘĘĘĘĘĘĘĘĘĘěĘňŪŧśŝŜŭŪřŤĘūŧŭŦŜĘŝŞŞŝśŬĘūűŦŬŠŝūšūĘřŦŜĘŨŤřűŚřśţĂĘĘĘĘǚƌƔǚƌŸǚƌŸĘŠšşŠūś
+ŧŪŝĦŨűĘĘĘĘĘĘĘĘĘĘĘĘĘĘĘĘĘĘěĘŀšşŠĘūśŧŪŝĘŤŧřŜħūřŮŝĘĠłŋŇņġĂĘĘĘĘǚƌƌǚƌŸǚƌŸĘūŝŬŬšŦşūĦŨű
+ĘĘĘĘĘĘĘĘĘĘĘĘĘĘĘĘĘĘĘĘěĘĻŝŦŬŪřŤĘŬŭŦřŚŤŝĘśŧŦūŬřŦŬūĂŘŘŘĂĂěěĘĿřťŝŨŤřűĘĽŰŨŤřŦřŬšŧŦĂĂő
+ŧŭĘūŬřŪŬĘšŦĘŬŠŝĘťřšŦĘťŝŦŭĦĘĻŠŧŧūŝĘĢĢŋŬřŪŬĘĿřťŝĢĢĘŬŧĘŚŝşšŦĘŜŪšŮšŦşĦĂŀŧŤŜĘŘŏŘĘŬŧĘ
+řśśŝŤŝŪřŬŝĘŭŨĘŬŧĘűŧŭŪĘŬŧŨĘūŨŝŝŜĳĘŭūŝĘŘĹŘħŘļŘĘŬŧĘśŠřŦşŝĂŤřŦŝūĦĘĽŦŝťűĘśřŪūĘūŨřůŦĘ
+řŬĘŬŠŝĘŬŧŨĘŧŞĘŬŠŝĘūśŪŝŝŦĘšŦĘŪřŦŜŧťĘŤřŦŝūĘřŦŜĂřŨŨŪŧřśŠĘřŬĘŮřŪűšŦşĘūŨŝŝŜūĘǚŸƌĘūŬŝ
+ŝŪĘřŪŧŭŦŜĘŬŠŝťĦĘĻŧŤŤšŜšŦşĘśŧūŬūĘŧŦŝĘŧŞĂűŧŭŪĘŬŠŪŝŝĘŤšŮŝūĘřŦŜĘşŪřŦŬūĘřĘūŠŧŪŬĘůšŦŜ
+ŧůĘŧŞĘšŦŮŭŤŦŝŪřŚšŤšŬűĘĠűŧŭŪĂśřŪĘŞŤřūŠŝūġĘūŧĘűŧŭĘŠřŮŝĘřĘśŠřŦśŝĘŬŧĘŪŝśŧŮŝŪĦĘňŧůŝŪ
+ĥŭŨūĘŜŪšŞŬĘŜŧůŦĘŬŠŝĂŪŧřŜĘšŦĘŪřŦŜŧťĘŤřŦŝūĲĂĂĥĘĢĢĺŧŧūŬĢĢĘĠřťŚŝŪĘŤšşŠŬŦšŦşĘšśŧŦġĘǚ
+ŸƌĘŬŝťŨŧŪřŪšŤűĘŪřšūŝūĘűŧŭŪĘŬŧŨĘūŨŝŝŜĦĂĥĘĢĢŋŠšŝŤŜĢĢĘĠśűřŦĘūŠšŝŤŜĘšśŧŦġĘǚŸƌĘŬŝťŨŧ
+ŪřŪűĘšťťŭŦšŬűĘŬŧĘśŧŤŤšūšŧŦūĦĂĥĘĢĢŊŝŨřšŪĢĢĘĠşŪŝŝŦĘŨŤŭūĘšśŧŦġĘǚŸƌĘŪŝūŬŧŪŝūĘŧŦŝĘŤŧ
+ūŬĘŤšŞŝĘĠŭŨĘŬŧĘŬŠŝĘťřŰĂĘĘŧŞĘīġĦĂĂņšŬŪŧĘšūĘūŝŨřŪřŬŝĘŞŪŧťĘŨŧůŝŪĥŭŨūĲĘŠŧŤŜĘŘŋňĹĻĽŘ
+ĘřŦűĘŬšťŝĘŬŧĘūŨŝŦŜĘűŧŭŪĂŦšŬŪŧĘťŝŬŝŪĘŞŧŪĘřĘūŬŪŧŦşĤĘŬŝťŨŧŪřŪűĘūŨŝŝŜĘťŭŤŬšŨŤšŝŪĦĘŌ
+ŠŝĘťŝŬŝŪĂŜŝŨŤŝŬŝūĘůŠšŤŝĘřśŬšŮŝĘřŦŜĘūŤŧůŤűĘŪŝşŝŦŝŪřŬŝūĘůŠŝŦĘšŜŤŝĦĂĂőŧŭŪĘūśŧŪŝĘšŦ
+śŪŝřūŝūĘśŧŦŬšŦŭŧŭūŤűĘůšŬŠĘŜšūŬřŦśŝĘŬŪřŮŝŤŝŜĤĘŨŤŭūĘřĘŚŧŦŭūĂŝřśŠĘŬšťŝĘűŧŭĘŨřūūĘřŦ
+ĘŝŦŝťűĘśřŪĦĘļšŞŞšśŭŤŬűĘŪřťŨūĘŭŨĘşŪřŜŭřŤŤűĘŧŮŝŪĂřŚŧŭŬĘŬŠŝĘŞšŪūŬĘťšŦŭŬŝĘřŦŜĘřĘŠřŤ
+ŞĘŧŞĘŨŤřűĘǚŸƌĘūŨřůŦĘŪřŬŝĘšŦśŪŝřūŝūĘřŦŜĂŝŦŝťűĘūŨŝŝŜūĘŪšūŝĘǚŸƌĘūŧĘŝřŪŤűĘŜŪšŮšŦşĘš
+ūĘŞŧŪşšŮšŦşĘůŠšŤŝĘŤřŬŝŪĘŜŪšŮšŦşĂŜŝťřŦŜūĘūŠřŪŨŝŪĘŪŝŞŤŝŰŝūĦĘńŧūšŦşĘřŤŤĘŬŠŪŝŝĘŤšŮŝ
+ūĘŝŦŜūĘŬŠŝĘŪŭŦĘřŦŜĂūŠŧůūĘŬŠŝĘĿřťŝĘŇŮŝŪĘūśŪŝŝŦĘůšŬŠĘűŧŭŪĘŞšŦřŤĘūśŧŪŝĤĘŠšşŠĘūśŧŪŝ
+ĤĘřŦŜĂŜšūŬřŦśŝĤĘŨŤŭūĘŧŨŬšŧŦūĘŬŧĘŪŝūŬřŪŬĤĘŪŝŬŭŪŦĘŬŧĘŬŠŝĘťřšŦĘťŝŦŭĤĘŧŪĘũŭšŬĦĂĂěěĘ
+ŌŪŧŭŚŤŝūŠŧŧŬšŦşĂĂĢĢŌŠŝĘůšŦŜŧůĘŜŧŝūŦğŬĘŧŨŝŦĘħĘŘŨűşřťŝĦŝŪŪŧŪĲĘŮšŜŝŧĘūűūŬŝťĘŦŧŬĘšŦ
+šŬšřŤšŲŝŜŘĢĢĂŅřţŝĘūŭŪŝĘűŧŭğŪŝĘŪŭŦŦšŦşĘšŦĘřĘşŪřŨŠšśřŤĘŜŝūţŬŧŨĘūŝūūšŧŦĘůšŬŠĘřĘŜšū
+ŨŤřűĂřŮřšŤřŚŤŝĘĠŘŝśŠŧĘĜļŁŋňńĹőŘĘūŠŧŭŤŜĘŨŪšŦŬĘūŧťŝŬŠšŦşĘŤšţŝĘŘĲĨŘĘŧŪĂŘĲĩŘġĦĘŀŝřŜ
+ŤŝūūĘūŝŪŮŝŪūĘřŦŜĘŨŭŪŝĘŋŋŀĘūŝūūšŧŦūĘůšŬŠŧŭŬĘŐĘŞŧŪůřŪŜšŦşĂśřŦŦŧŬĘūŠŧůĘřĘşŪřŨŠšśřŤ
+ĘůšŦŜŧůĦĘŁŞĘűŧŭğŪŝĘšŦĘřĘśŧŦŬřšŦŝŪĤĘŐĩĩĘťŭūŬĘŚŝĂŞŧŪůřŪŜŝŜĘŬŧĘŬŠŝĘŠŧūŬĘŜšūŨŤřűĘĠū
+ŝŝĘŬŠŝĘŦŧŬŝĘŚŝŤŧůĘřŚŧŭŬĘŞŭŬŭŪŝĂļŧśţŝŪšŲřŬšŧŦġĦĂĂĢĢŘŅŧŜŭŤŝņŧŬľŧŭŦŜĽŪŪŧŪĲĘņŧĘťŧŜŭ
+ŤŝĘŦřťŝŜĘğŨűşřťŝğŘĢĢĂŊŭŦĘŘŨűŬŠŧŦīĘĥťĘŨšŨĘšŦūŬřŤŤĘĥŪĘŪŝũŭšŪŝťŝŦŬūĦŬŰŬŘĘŞŪŧťĘšŦūš
+ŜŝĘŬŠŝĂŨŪŧŢŝśŬĘŪŧŧŬĤĘřŦŜĘťřţŝĘūŭŪŝĘűŧŭğŪŝĘŭūšŦşĘŬŠŝĘūřťŝĘňűŬŠŧŦĘŝŦŮšŪŧŦťŝŦŬĂűŧŭ
+ĘŭūŝŜĘŬŧĘšŦūŬřŤŤĘšŬĘĠśŠŝśţĘŘůŠšśŠĘŨűŬŠŧŦīŘĘřŦŜĤĘšŞĘŭūšŦşĘřĘŮšŪŬŭřŤĂŝŦŮšŪŧŦťŝŦŬĤ
+ĘŬŠřŬĘšŬğūĘřśŬšŮřŬŝŜġĦĂĂĢĢņŧĘūŧŭŦŜĘŝŞŞŝśŬūĘŨŤřűĢĢĂŌŠŝĘşřťŝĘūűŦŬŠŝūšŲŝūĘšŬūĘūŧŭŦ
+ŜĘŝŞŞŝśŬūĘřŬĘūŬřŪŬŭŨĘŭūšŦşĘŨűşřťŝğūĘřŭŜšŧĂťšŰŝŪĦĘŁŞĘŦŧĘřŭŜšŧĘŜŝŮšśŝĘšūĘřŮřšŤřŚŤ
+ŝĘĠśŧťťŧŦĘŧŦĘūŧťŝĘŎŅūĘŧŪĘťšŦšťřŤĂśŧŦŬřšŦŝŪūġĤĘŬŠŝĘşřťŝĘřŭŬŧťřŬšśřŤŤűĘŞřŤŤūĘŚřśţ
+ĘŬŧĘūšŤŝŦŬĘťŧŜŝĘřŦŜĂśŧŦŬšŦŭŝūĘŬŧĘŪŭŦĘŦŧŪťřŤŤűĘǚŸƌĘŬŠšūĘšūĘŝŰŨŝśŬŝŜĘŚŝŠřŮšŧŪĤĘŦŧ
+ŬĘřĘŚŭşĦĂĂĢĢŌŠŝĘşřťŝĘŞŝŝŤūĘūŤŧůĘŧŪĘśŠŧŨŨűĢĢĂĻŧŦŞšŪťĘűŧŭŪĘŎŅħūŝūūšŧŦĘŠřūĘŠřŪŜůřŪ
+ŝĥřśśŝŤŝŪřŬŝŜĘşŪřŨŠšśūĘřŮřšŤřŚŤŝĘšŞĂŨŧūūšŚŤŝĤĘřŦŜĘśŤŧūŝĘŧŬŠŝŪĘĿňōħĻňōĥŠŝřŮűĘřŨŨ
+ŤšśřŬšŧŦūĦĘŌŠŝĘşřťŝĘŬřŪşŝŬūĂĮĨĘľňŋĘŚŭŬĘůšŤŤĘūŬšŤŤĘŪŭŦĘśŧŪŪŝśŬŤűĤĘŢŭūŬĘŤŝūūĘūťŧŧ
+ŬŠŤűĤĘŧŦĘūŤŧůŝŪĂŠřŪŜůřŪŝĦĂĂĢĢŀšşŠĘūśŧŪŝĘŜŧŝūŦğŬĘūřŮŝĢĢĂĽŦūŭŪŝĘŬŠŝĘŘŜřŬřħŘĘŜšŪŝś
+ŬŧŪűĘšūĘůŪšŬřŚŤŝĘŚűĘűŧŭŪĘŭūŝŪĘřśśŧŭŦŬĦĘŌŠŝĂşřťŝĘśŪŝřŬŝūĘŘŜřŬřħŠšşŠūśŧŪŝĦŢūŧŦŘĘř
+ŭŬŧťřŬšśřŤŤűĘřŦŜĘŞřšŤūĘşŪřśŝŞŭŤŤűĂĠŞřŤŤšŦşĘŚřśţĘŬŧĘřŦĘšŦĥťŝťŧŪűĥŧŦŤűĘŠšşŠĘūśŧŪŝ
+ĘŞŧŪĘŬŠřŬĘūŝūūšŧŦġĘšŞĘšŬĂśřŦŦŧŬĘůŪšŬŝĘŬŧĘŜšūţĦĂĂěěĘľŭŬŭŪŝĘŁťŨŪŧŮŝťŝŦŬūĂĂĥĘĹŜŜšŬ
+šŧŦřŤĘśřŪĘūţšŦūħśŧŤŧŪĘśŠŧšśŝūĘūŝŤŝśŬřŚŤŝĘŞŪŧťĘŬŠŝĘťřšŦĘťŝŦŭĂĥĘŅŧŪŝĘŨŧůŝŪĥŭŨĘŮřŪ
+šŝŬűĘĠŝĦşĦĘūśŧŪŝĘťŭŤŬšŨŤšŝŪĤĘūŤŧůĥťŧŬšŧŦġĂĥĘŇŦŤšŦŝħūŠřŪŝŜĘŤŝřŜŝŪŚŧřŪŜĘūŭŨŨŧŪŬĂĥ
+ĘĻŧŦŞšşŭŪřŚŤŝĘţŝűĘŚšŦŜšŦşūĂĥĘĹŜŜšŬšŧŦřŤĘŪŧřŜĘŝŦŮšŪŧŦťŝŦŬūĘĠŦšşŠŬĘśšŬűĤĘŜŝūŝŪŬĤĘ
+ŬŭŦŦŝŤġĂĥĘĻŧŦŬŪŧŤŤŝŪħşřťŝŨřŜĘūŭŨŨŧŪŬĂĂěěĘńšśŝŦūŝĂĂŌŠšūĘŨŪŧŢŝśŬĘšūĘŨŪŧŮšŜŝŜĘřūĥš
+ūĘŞŧŪĘŨŝŪūŧŦřŤĤĘŝŜŭśřŬšŧŦřŤĤĘřŦŜĂŨŧŪŬŞŧŤšŧĘŭūŝĦĘĹŤŤĘśŧŜŝĘřŦŜĘŨŪŧśŝŜŭŪřŤŤűĘşŝŦŝŪ
+řŬŝŜĘřūūŝŬūĘřŪŝĘŧŪšşšŦřŤĂřŦŜĘŞŪŝŝĘŧŞĘŬŠšŪŜĥŨřŪŬűĘśŧŨűŪšşŠŬŝŜĘťřŬŝŪšřŤĦĂ''')
+
+with open("src/road.py","w") as fs:fs.write("""\
+"""
+road.py
+Draws the scrolling highway: grass, road surface, edge glow and
+dashed lane markings. All road art is generated procedurally with
+pygame primitives, no external image assets required.
+"""
+
+import pygame
+
+from src import settings
+
+
+class Road:
+    def __init__(self):
+        self.scroll_y = 0.0
+        # Pre-render a static background tile (grass + road base) that we
+        # can blit cheaply, then draw dynamic scrolling elements over it.
+        self.static_surface = self._build_static_surface()
+
+    def _build_static_surface(self):
+        surf = pygame.Surface((settings.SCREEN_WIDTH, settings.SCREEN_HEIGHT))
+        surf.fill(settings.COLOR_BG)
+
+        # Grass with a subtle checker pattern for texture.
+        tile = 48
+        for y in range(0, settings.SCREEN_HEIGHT, tile):
+            for x in range(0, settings.SCREEN_WIDTH, tile):
+                if (x // tile + y // tile) % 2 == 0:
+                    color = settings.COLOR_GRASS_DARK
+                else:
+                    color = settings.COLOR_GRASS_LIGHT
+                pygame.draw.rect(surf, color, (x, y, tile, tile))
+
+        # Road surface.
+        pygame.draw.rect(
+            surf, settings.COLOR_ROAD,
+            (settings.ROAD_LEFT, 0, settings.ROAD_WIDTH, settings.SCREEN_HEIGHT)
+        )
+        return surf
+
+    def update(self, dt, world_speed):
+        self.scroll_y = (self.scroll_y + world_speed * dt) % (
+            settings.LANE_LINE_SEGMENT + settings.LANE_LINE_GAP
+        )
+
+    def draw(self, surface, world_speed=0.0, shake_offset=(0, 0)):
+        ox, oy = shake_offset
+        surface.blit(self.static_surface, (ox, oy))
+
+        # Road edge glow (double line for neon feel).
+        left = settings.ROAD_LEFT + ox
+        right = settings.ROAD_RIGHT + ox
+        edge_w = settings.ROAD_EDGE_WIDTH
+        self._draw_glow_line(surface, left, right, edge_w, oy)
+
+        # Dashed lane lines between lanes (not on outer edges).
+        segment = settings.LANE_LINE_SEGMENT
+        gap = settings.LANE_LINE_GAP
+        period = segment + gap
+        for lane in range(1, settings.LANE_COUNT):
+            lane_x = settings.ROAD_LEFT + lane * settings.LANE_WIDTH + ox
+            y = -period + self.scroll_y + oy
+            while y < settings.SCREEN_HEIGHT:
+                rect = pygame.Rect(
+                    int(lane_x - settings.LANE_LINE_WIDTH / 2), int(y),
+                    settings.LANE_LINE_WIDTH, segment
+                )
+                pygame.draw.rect(surface, settings.COLOR_LANE_LINE, rect, border_radius=3)
+                y += period
+
+    def _draw_glow_line(self, surface, left, right, edge_w, oy):
+        glow_color = settings.COLOR_ROAD_EDGE
+        for i, alpha_w in enumerate((edge_w + 8, edge_w + 4, edge_w)):
+            alpha = 60 if i < 2 else 255
+            layer = pygame.Surface((alpha_w, settings.SCREEN_HEIGHT), pygame.SRCALPHA)
+            layer.fill((*glow_color, alpha))
+            surface.blit(layer, (left - alpha_w / 2, oy), special_flags=pygame.BLEND_RGBA_ADD)
+            surface.blit(layer, (right - alpha_w / 2, oy), special_flags=pygame.BLEND_RGBA_ADD)
+
+    def lane_center_x(self, lane_index):
+        return settings.ROAD_LEFT + lane_index * settings.LANE_WIDTH + settings.LANE_WIDTH // 2
 """)
 
-import sys
+
+with open("src/menu.py","w") as fs:fs.write("""\
+"""
+menu.py
+Menu screens: main menu, instructions, pause overlay and game over screen.
+Handles simple keyboard-driven selection (Up/Down + Enter) with a subtle
+animated neon backdrop, procedurally generated (no external assets).
+"""
+
+import math
+import random
+import pygame
+
+from src import settings
+
+
+class AnimatedBackdrop:
+    """A slow-drifting field of neon dots used behind menu screens."""
+
+    def __init__(self, count=60):
+        self.stars = []
+        for _ in range(count):
+            self.stars.append({
+                "x": random.uniform(0, settings.SCREEN_WIDTH),
+                "y": random.uniform(0, settings.SCREEN_HEIGHT),
+                "speed": random.uniform(30, 140),
+                "size": random.uniform(1.5, 3.5),
+                "color": random.choice(settings.ENEMY_COLORS + [settings.COLOR_PLAYER]),
+            })
+
+    def update(self, dt):
+        for s in self.stars:
+            s["y"] += s["speed"] * dt
+            if s["y"] > settings.SCREEN_HEIGHT + 5:
+                s["y"] = -5
+                s["x"] = random.uniform(0, settings.SCREEN_WIDTH)
+
+    def draw(self, surface):
+        surface.fill(settings.COLOR_BG)
+        for s in self.stars:
+            glow = pygame.Surface((int(s["size"] * 6), int(s["size"] * 6)), pygame.SRCALPHA)
+            gc = glow.get_width() / 2
+            pygame.draw.circle(glow, (*s["color"], 90), (gc, gc), s["size"] * 2.2)
+            surface.blit(glow, (s["x"] - gc, s["y"] - gc), special_flags=pygame.BLEND_RGBA_ADD)
+            pygame.draw.circle(surface, s["color"], (s["x"], s["y"]), s["size"])
+
+
+class Menu:
+    def __init__(self, hud):
+        self.hud = hud
+        self.backdrop = AnimatedBackdrop()
+        self.title_font = pygame.font.SysFont("consolas,couriernew,monospace", 64, bold=True)
+        self.option_font = pygame.font.SysFont("consolas,couriernew,monospace", 32, bold=True)
+        self.body_font = pygame.font.SysFont("consolas,couriernew,monospace", 22)
+        self.small_font = pygame.font.SysFont("consolas,couriernew,monospace", 18)
+        self.pulse = 0.0
+
+    def update(self, dt):
+        self.backdrop.update(dt)
+        self.pulse += dt
+
+    # ------------------------------------------------------------------
+    # Shared option-list rendering with a highlighted selection.
+    # ------------------------------------------------------------------
+    def _draw_options(self, surface, options, selected_index, start_y, spacing=56):
+        rects = []
+        for i, option in enumerate(options):
+            y = start_y + i * spacing
+            is_selected = i == selected_index
+            color = settings.COLOR_PLAYER if is_selected else settings.COLOR_WHITE
+            scale = 1.0 + (0.06 * math.sin(self.pulse * 6)) if is_selected else 1.0
+
+            text_surf = self.option_font.render(option, True, color)
+            if scale != 1.0:
+                w, h = text_surf.get_size()
+                text_surf = pygame.transform.smoothscale(text_surf, (int(w * scale), int(h * scale)))
+            rect = text_surf.get_rect(center=(settings.SCREEN_WIDTH // 2, y))
+
+            if is_selected:
+                arrow_l = self.option_font.render(">", True, settings.COLOR_UI_ACCENT)
+                arrow_r = self.option_font.render("<", True, settings.COLOR_UI_ACCENT)
+                surface.blit(arrow_l, (rect.left - 40, rect.top))
+                surface.blit(arrow_r, (rect.right + 12, rect.top))
+
+            surface.blit(text_surf, rect)
+            rects.append(rect)
+        return rects
+
+    def draw_main_menu(self, surface, selected_index, high_score):
+        self.backdrop.draw(surface)
+
+        title = "NEON STREET RACER"
+        title_surf = self.title_font.render(title, True, settings.COLOR_PLAYER)
+        glow_surf = self.title_font.render(title, True, settings.COLOR_UI_ACCENT)
+        rect = title_surf.get_rect(center=(settings.SCREEN_WIDTH // 2, 170))
+        for dx, dy in ((-3, 0), (3, 0), (0, -3), (0, 3)):
+            g = glow_surf.copy()
+            g.set_alpha(70)
+            surface.blit(g, (rect.x + dx, rect.y + dy), special_flags=pygame.BLEND_RGBA_ADD)
+        surface.blit(title_surf, rect)
+
+        subtitle = self.body_font.render("A NEON ARCADE HIGHWAY RACER", True, settings.COLOR_GREY)
+        surface.blit(subtitle, subtitle.get_rect(center=(settings.SCREEN_WIDTH // 2, 220)))
+
+        hs = self.small_font.render(f"HIGH SCORE: {int(high_score):06d}", True, settings.COLOR_WHITE)
+        surface.blit(hs, hs.get_rect(center=(settings.SCREEN_WIDTH // 2, 260)))
+
+        options = ["START GAME", "INSTRUCTIONS", "QUIT"]
+        self._draw_options(surface, options, selected_index, start_y=400)
+
+        footer = self.small_font.render("USE UP/DOWN AND ENTER", True, settings.COLOR_GREY)
+        surface.blit(footer, footer.get_rect(center=(settings.SCREEN_WIDTH // 2, settings.SCREEN_HEIGHT - 40)))
+
+    def draw_instructions(self, surface):
+        self.backdrop.draw(surface)
+        self.hud.draw_center_title(surface, "INSTRUCTIONS", 90)
+
+        lines = [
+            ("CONTROLS", settings.COLOR_PLAYER),
+            ("W / UP        Accelerate", settings.COLOR_WHITE),
+            ("S / DOWN      Brake / Reverse", settings.COLOR_WHITE),
+            ("A / LEFT      Steer Left", settings.COLOR_WHITE),
+            ("D / RIGHT     Steer Right", settings.COLOR_WHITE),
+            ("SPACE         Nitro Boost", settings.COLOR_WHITE),
+            ("ESC           Pause", settings.COLOR_WHITE),
+            ("R             Restart after Game Over", settings.COLOR_WHITE),
+            ("", settings.COLOR_WHITE),
+            ("OBJECTIVE", settings.COLOR_PLAYER),
+            ("Survive the highway, dodge traffic, and rack", settings.COLOR_WHITE),
+            ("up distance and score. You have 3 lives -- a", settings.COLOR_WHITE),
+            ("collision costs one and grants brief invulnerability.", settings.COLOR_WHITE),
+            ("", settings.COLOR_WHITE),
+            ("NITRO", settings.COLOR_PLAYER),
+            ("Hold SPACE to burn nitro for a burst of speed.", settings.COLOR_WHITE),
+            ("The meter drains while active and slowly refills.", settings.COLOR_WHITE),
+            ("", settings.COLOR_WHITE),
+            ("POWER-UPS", settings.COLOR_PLAYER),
+            ("BOOST  - temporary top speed increase", settings.COLOR_BOOST),
+            ("SHIELD - temporary collision immunity", settings.COLOR_SHIELD),
+            ("REPAIR - restores one lost life", settings.COLOR_REPAIR),
+        ]
+
+        y = 150
+        for text, color in lines:
+            if text:
+                surf = self.body_font.render(text, True, color)
+                surface.blit(surf, surf.get_rect(midleft=(settings.SCREEN_WIDTH // 2 - 260, y)))
+            y += 24
+
+        footer = self.small_font.render("PRESS ESC OR ENTER TO RETURN", True, settings.COLOR_GREY)
+        surface.blit(footer, footer.get_rect(center=(settings.SCREEN_WIDTH // 2, settings.SCREEN_HEIGHT - 40)))
+
+    def draw_pause(self, surface, game_surface, selected_index):
+        surface.blit(game_surface, (0, 0))
+        overlay = pygame.Surface((settings.SCREEN_WIDTH, settings.SCREEN_HEIGHT), pygame.SRCALPHA)
+        overlay.fill((0, 0, 0, 160))
+        surface.blit(overlay, (0, 0))
+
+        self.hud.draw_center_title(surface, "PAUSED", 220)
+        options = ["RESUME", "RESTART", "MAIN MENU"]
+        self._draw_options(surface, options, selected_index, start_y=360)
+
+    def draw_game_over(self, surface, selected_index, score, high_score, distance, new_high_score):
+        self.backdrop.draw(surface)
+        self.hud.draw_center_title(surface, "GAME OVER", 130, color=settings.COLOR_UI_ACCENT, glow=settings.COLOR_UI_ACCENT)
+
+        if new_high_score:
+            tag = self.body_font.render("NEW HIGH SCORE!", True, settings.COLOR_BOOST)
+            surface.blit(tag, tag.get_rect(center=(settings.SCREEN_WIDTH // 2, 190)))
+
+        stats = [
+            f"FINAL SCORE   {int(score):06d}",
+            f"HIGH SCORE    {int(high_score):06d}",
+            f"DISTANCE      {int(distance):05d} m",
+        ]
+        y = 240
+        for line in stats:
+            surf = self.option_font.render(line, True, settings.COLOR_WHITE)
+            surface.blit(surf, surf.get_rect(center=(settings.SCREEN_WIDTH // 2, y)))
+            y += 42
+
+        options = ["RESTART", "MAIN MENU", "QUIT"]
+        self._draw_options(surface, options, selected_index, start_y=440)
+
+        footer = self.small_font.render("PRESS R TO QUICK-RESTART", True, settings.COLOR_GREY)
+        surface.blit(footer, footer.get_rect(center=(settings.SCREEN_WIDTH // 2, settings.SCREEN_HEIGHT - 40)))
+""")
+
+
+with open("src/audio.py","w") as fs:fs.write("""\
+"""
+audio.py
+Generates simple original sound effects procedurally at startup using
+pure Python + pygame's sndarray (no external audio files, no internet
+access required). If the mixer or sndarray backend is unavailable
+(e.g. no audio device in a headless/container environment) every method
+degrades to a harmless no-op so the game still runs correctly.
+"""
+
+import array
+import math
+import random
+
+import pygame
+
+SAMPLE_RATE = 44100
+
+
+class AudioEngine:
+    def __init__(self):
+        self.enabled = False
+        self.sounds = {}
+        try:
+            pygame.mixer.pre_init(SAMPLE_RATE, -16, 2, 512)
+            pygame.mixer.init()
+            self.enabled = pygame.mixer.get_init() is not None
+        except pygame.error:
+            self.enabled = False
+
+        if self.enabled:
+            try:
+                self._build_sounds()
+            except Exception:
+                # Any failure while synthesizing sounds should never crash
+                # the game -- fall back to silent mode.
+                self.enabled = False
+                self.sounds = {}
+
+    # ------------------------------------------------------------------
+    # Waveform helpers
+    # ------------------------------------------------------------------
+    def _make_sound(self, samples):
+        arr = array.array("h", samples)
+        stereo = array.array("h")
+        for s in arr:
+            stereo.append(s)
+            stereo.append(s)
+        return pygame.mixer.Sound(buffer=stereo.tobytes())
+
+    def _tone(self, freq, duration, volume=0.5, wave="sine", fade_out=True, freq_end=None):
+        n_samples = int(SAMPLE_RATE * duration)
+        samples = []
+        amp = int(32767 * volume)
+        for i in range(n_samples):
+            t = i / SAMPLE_RATE
+            if freq_end is not None:
+                f = freq + (freq_end - freq) * (i / max(1, n_samples - 1))
+            else:
+                f = freq
+
+            phase = 2 * math.pi * f * t
+            if wave == "sine":
+                value = math.sin(phase)
+            elif wave == "square":
+                value = 1.0 if math.sin(phase) >= 0 else -1.0
+            elif wave == "saw":
+                value = 2.0 * ((f * t) % 1.0) - 1.0
+            elif wave == "noise":
+                value = random.uniform(-1.0, 1.0)
+            else:
+                value = math.sin(phase)
+
+            if fade_out:
+                envelope = 1.0 - (i / n_samples)
+            else:
+                envelope = min(1.0, i / (0.05 * SAMPLE_RATE + 1)) * (1.0 - max(0.0, (i / n_samples) - 0.7) / 0.3)
+                envelope = max(0.0, min(1.0, envelope))
+
+            samples.append(int(amp * value * envelope))
+        return samples
+
+    def _mix(self, *sample_lists):
+        length = max(len(s) for s in sample_lists)
+        out = [0] * length
+        for s in sample_lists:
+            for i, v in enumerate(s):
+                out[i] += v
+        # Clip to valid 16-bit range.
+        return [max(-32767, min(32767, v)) for v in out]
+
+    # ------------------------------------------------------------------
+    # Sound construction
+    # ------------------------------------------------------------------
+    def _build_sounds(self):
+        # Engine hum: layered low square/saw wave, looped while accelerating.
+        engine = self._tone(90, 0.4, volume=0.18, wave="square", fade_out=False)
+        engine2 = self._tone(140, 0.4, volume=0.10, wave="saw", fade_out=False)
+        self.sounds["engine"] = self._make_sound(self._mix(engine, engine2))
+
+        # Collision: descending noise burst + low thud.
+        crash_noise = self._tone(220, 0.25, volume=0.5, wave="noise")
+        crash_thud = self._tone(70, 0.3, volume=0.6, wave="sine", freq_end=40)
+        self.sounds["collision"] = self._make_sound(self._mix(crash_noise, crash_thud))
+
+        # Nitro: rising sweep.
+        nitro = self._tone(220, 0.5, volume=0.35, wave="saw", freq_end=760, fade_out=False)
+        self.sounds["nitro"] = self._make_sound(nitro)
+
+        # Power-up: bright ascending two-note chime.
+        p1 = self._tone(523, 0.12, volume=0.4, wave="sine")
+        p2 = self._tone(784, 0.18, volume=0.4, wave="sine")
+        chime = p1 + p2
+        self.sounds["powerup"] = self._make_sound(chime)
+
+        # Menu select: short click/blip.
+        blip = self._tone(660, 0.08, volume=0.35, wave="square")
+        self.sounds["menu_select"] = self._make_sound(blip)
+
+        # Game over: descending minor tone.
+        go1 = self._tone(392, 0.22, volume=0.4, wave="sine")
+        go2 = self._tone(311, 0.22, volume=0.4, wave="sine")
+        go3 = self._tone(220, 0.4, volume=0.4, wave="sine")
+        self.sounds["game_over"] = self._make_sound(go1 + go2 + go3)
+
+    # ------------------------------------------------------------------
+    # Public playback API (all safe no-ops if audio is disabled)
+    # ------------------------------------------------------------------
+    def play(self, name, loops=0):
+        if not self.enabled:
+            return
+        sound = self.sounds.get(name)
+        if sound is not None:
+            try:
+                sound.play(loops=loops)
+            except pygame.error:
+                pass
+
+    def stop(self, name):
+        if not self.enabled:
+            return
+        sound = self.sounds.get(name)
+        if sound is not None:
+            try:
+                sound.stop()
+            except pygame.error:
+                pass
+
+    def set_engine_playing(self, playing):
+        if not self.enabled:
+            return
+        sound = self.sounds.get("engine")
+        if sound is None:
+            return
+        try:
+            channel = pygame.mixer.Channel(0)
+            if playing:
+                if not channel.get_busy():
+                    channel.play(sound, loops=-1)
+            else:
+                if channel.get_busy():
+                    channel.stop()
+        except pygame.error:
+            pass
+""")
+
+
+with open("src/hud.py","w") as fs:fs.write("""\
+"""
+hud.py
+On-screen heads-up display during gameplay: score, high score, distance,
+lives, and the nitro meter. Also renders the pause overlay and game over
+screen contents (layout logic lives in menu.py; this module supplies the
+reusable HUD widgets).
+"""
+
+import pygame
+
+from src import settings
+
+
+class HUD:
+    def __init__(self):
+        self.font_small = pygame.font.SysFont("consolas,couriernew,monospace", 20, bold=True)
+        self.font_medium = pygame.font.SysFont("consolas,couriernew,monospace", 28, bold=True)
+        self.font_large = pygame.font.SysFont("consolas,couriernew,monospace", 56, bold=True)
+        self.clock_font = pygame.font.SysFont("consolas,couriernew,monospace", 16)
+
+    def _draw_text_glow(self, surface, text, font, color, pos, glow_color=None, center=False):
+        glow_color = glow_color or color
+        base = font.render(text, True, color)
+        rect = base.get_rect()
+        if center:
+            rect.center = pos
+        else:
+            rect.topleft = pos
+
+        glow = font.render(text, True, glow_color)
+        for dx, dy in ((-2, 0), (2, 0), (0, -2), (0, 2)):
+            gsurf = glow.copy()
+            gsurf.set_alpha(60)
+            surface.blit(gsurf, (rect.x + dx, rect.y + dy), special_flags=pygame.BLEND_RGBA_ADD)
+        surface.blit(base, rect)
+        return rect
+
+    def draw_panel(self, surface, rect, alpha=170):
+        panel = pygame.Surface((rect.width, rect.height), pygame.SRCALPHA)
+        panel.fill((*settings.COLOR_UI_PANEL, alpha))
+        pygame.draw.rect(panel, (*settings.COLOR_UI_ACCENT, 200), panel.get_rect(), width=2, border_radius=10)
+        surface.blit(panel, rect.topleft)
+
+    def draw_gameplay_hud(self, surface, score, high_score, distance, lives, nitro, fps=None):
+        # Top-left: score / high score / distance panel.
+        panel_rect = pygame.Rect(16, 16, 300, 108)
+        self.draw_panel(surface, panel_rect)
+        self._draw_text_glow(
+            surface, f"SCORE  {int(score):06d}", self.font_medium,
+            settings.COLOR_WHITE, (panel_rect.x + 14, panel_rect.y + 10),
+            glow_color=settings.COLOR_UI_ACCENT
+        )
+        self._draw_text_glow(
+            surface, f"BEST   {int(high_score):06d}", self.font_small,
+            settings.COLOR_GREY, (panel_rect.x + 14, panel_rect.y + 46)
+        )
+        self._draw_text_glow(
+            surface, f"DIST   {int(distance):05d}m", self.font_small,
+            settings.COLOR_GREY, (panel_rect.x + 14, panel_rect.y + 74)
+        )
+
+        # Top-right: lives.
+        lives_panel = pygame.Rect(settings.SCREEN_WIDTH - 176, 16, 160, 56)
+        self.draw_panel(surface, lives_panel)
+        for i in range(settings.PLAYER_START_LIVES):
+            cx = lives_panel.x + 30 + i * 46
+            cy = lives_panel.y + 28
+            color = settings.COLOR_UI_ACCENT if i < lives else (60, 60, 70)
+            self._draw_heart(surface, cx, cy, color)
+
+        # Bottom-left: nitro meter.
+        meter_rect = pygame.Rect(16, settings.SCREEN_HEIGHT - 56, 260, 26)
+        self.draw_panel(surface, meter_rect, alpha=150)
+        fill_w = int((meter_rect.width - 8) * (nitro / settings.NITRO_MAX))
+        fill_rect = pygame.Rect(meter_rect.x + 4, meter_rect.y + 4, max(0, fill_w), meter_rect.height - 8)
+        pygame.draw.rect(surface, settings.COLOR_NITRO, fill_rect, border_radius=6)
+        label = self.font_small.render("NITRO", True, settings.COLOR_WHITE)
+        surface.blit(label, (meter_rect.x + meter_rect.width + 10, meter_rect.y + 3))
+
+        if fps is not None and settings.SHOW_FPS:
+            fps_surf = self.clock_font.render(f"{fps:.0f} FPS", True, settings.COLOR_GREY)
+            surface.blit(fps_surf, (settings.SCREEN_WIDTH - 90, settings.SCREEN_HEIGHT - 26))
+
+    def _draw_heart(self, surface, cx, cy, color):
+        r = 8
+        pygame.draw.circle(surface, color, (cx - r * 0.6, cy - r * 0.3), r)
+        pygame.draw.circle(surface, color, (cx + r * 0.6, cy - r * 0.3), r)
+        points = [
+            (cx - r * 1.5, cy - r * 0.1),
+            (cx, cy + r * 1.6),
+            (cx + r * 1.5, cy - r * 0.1),
+        ]
+        pygame.draw.polygon(surface, color, points)
+
+    def draw_center_title(self, surface, text, y, color=None, glow=None):
+        color = color or settings.COLOR_WHITE
+        glow = glow or settings.COLOR_UI_ACCENT
+        return self._draw_text_glow(
+            surface, text, self.font_large, color,
+            (settings.SCREEN_WIDTH // 2, y), glow_color=glow, center=True
+        )
+
+    def draw_center_line(self, surface, text, y, font=None, color=None):
+        font = font or self.font_medium
+        color = color or settings.COLOR_WHITE
+        rect = font.render(text, True, color).get_rect(center=(settings.SCREEN_WIDTH // 2, y))
+        surface.blit(font.render(text, True, color), rect)
+        return rect
+""")
+
+
+with open("src/__init__.py","w") as fs:fs.write("""\
+""")
+
+
+with open("src/settings.py","w") as fs:fs.write("""\
+"""
+settings.py
+Central configuration for Neon Street Racer.
+All tunable constants live here so gameplay can be balanced in one place.
+"""
+
+import os
+
+# ---------------------------------------------------------------------------
+# Paths
+# ---------------------------------------------------------------------------
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+ASSETS_DIR = os.path.join(BASE_DIR, "assets")
+IMAGES_DIR = os.path.join(ASSETS_DIR, "images")
+SOUNDS_DIR = os.path.join(ASSETS_DIR, "sounds")
+DATA_DIR = os.path.join(BASE_DIR, "data")
+HIGHSCORE_FILE = os.path.join(DATA_DIR, "highscore.json")
+
+# ---------------------------------------------------------------------------
+# Window / display
+# ---------------------------------------------------------------------------
+SCREEN_WIDTH = 1280
+SCREEN_HEIGHT = 720
+FPS = 60
+WINDOW_TITLE = "Neon Street Racer"
+SHOW_FPS = False  # set True for debugging
+
+# ---------------------------------------------------------------------------
+# Colors (neon / arcade palette)
+# ---------------------------------------------------------------------------
+COLOR_BG = (8, 8, 18)
+COLOR_ROAD = (24, 22, 38)
+COLOR_ROAD_EDGE = (255, 42, 109)
+COLOR_LANE_LINE = (0, 229, 255)
+COLOR_GRASS_DARK = (10, 30, 20)
+COLOR_GRASS_LIGHT = (14, 40, 26)
+
+COLOR_PLAYER = (0, 229, 255)
+COLOR_PLAYER_GLOW = (0, 180, 255)
+
+ENEMY_COLORS = [
+    (255, 42, 109),   # neon pink/red
+    (255, 176, 0),    # neon amber
+    (162, 0, 255),    # neon purple
+    (57, 255, 20),    # neon green
+    (255, 255, 0),    # neon yellow
+]
+
+COLOR_WHITE = (240, 240, 250)
+COLOR_BLACK = (0, 0, 0)
+COLOR_GREY = (120, 120, 140)
+COLOR_SHIELD = (0, 229, 255)
+COLOR_BOOST = (255, 176, 0)
+COLOR_REPAIR = (57, 255, 20)
+COLOR_UI_PANEL = (18, 16, 30)
+COLOR_UI_ACCENT = (255, 42, 109)
+COLOR_NITRO = (255, 105, 0)
+
+# ---------------------------------------------------------------------------
+# Road geometry
+# ---------------------------------------------------------------------------
+LANE_COUNT = 4
+ROAD_WIDTH = 760
+ROAD_LEFT = (SCREEN_WIDTH - ROAD_WIDTH) // 2
+ROAD_RIGHT = ROAD_LEFT + ROAD_WIDTH
+LANE_WIDTH = ROAD_WIDTH // LANE_COUNT
+ROAD_EDGE_WIDTH = 10
+LANE_LINE_WIDTH = 6
+LANE_LINE_SEGMENT = 40
+LANE_LINE_GAP = 30
+
+# ---------------------------------------------------------------------------
+# Player car
+# ---------------------------------------------------------------------------
+CAR_WIDTH = 54
+CAR_HEIGHT = 96
+
+PLAYER_START_X_LANE = 1  # zero-indexed lane the player starts in (0..LANE_COUNT-1)
+PLAYER_MAX_SPEED = 620.0          # px/sec forward (visual world speed)
+PLAYER_MIN_SPEED = 90.0           # px/sec minimum forward speed (idle creep)
+PLAYER_REVERSE_SPEED = -140.0     # px/sec while braking hard / reversing
+PLAYER_ACCEL = 420.0              # px/sec^2 while accelerating
+PLAYER_BRAKE_DECEL = 620.0        # px/sec^2 while braking
+PLAYER_NATURAL_DECEL = 160.0      # px/sec^2 natural drag when no input
+PLAYER_STEER_SPEED = 560.0        # px/sec horizontal movement speed
+PLAYER_STEER_ACCEL = 3200.0       # px/sec^2 horizontal acceleration (inertia)
+PLAYER_STEER_FRICTION = 2600.0    # px/sec^2 horizontal friction when no steering input
+
+NITRO_MAX = 100.0
+NITRO_DRAIN_RATE = 42.0     # per second while active
+NITRO_REGEN_RATE = 12.0     # per second while inactive
+NITRO_SPEED_MULT = 1.65
+NITRO_MIN_TO_ACTIVATE = 8.0
+
+PLAYER_START_LIVES = 3
+PLAYER_INVULNERABLE_TIME = 1.6   # seconds of invulnerability after a hit
+PLAYER_COLLISION_KNOCKBACK = 140.0
+
+# ---------------------------------------------------------------------------
+# Enemies
+# ---------------------------------------------------------------------------
+ENEMY_WIDTH = 54
+ENEMY_HEIGHT = 96
+ENEMY_BASE_SPEED_MIN = 160.0     # relative closing speed baseline
+ENEMY_BASE_SPEED_MAX = 260.0
+ENEMY_SPAWN_INTERVAL_START = 1.35   # seconds between spawns at start
+ENEMY_SPAWN_INTERVAL_MIN = 0.45     # fastest spawn interval at max difficulty
+ENEMY_MIN_VERTICAL_GAP = 210.0      # minimum vertical gap between enemies in same lane
+DIFFICULTY_RAMP_TIME = 90.0         # seconds to reach max difficulty ramp
+DIFFICULTY_SPEED_BONUS_MAX = 220.0  # extra speed added at full ramp
+
+# ---------------------------------------------------------------------------
+# Power-ups
+# ---------------------------------------------------------------------------
+POWERUP_SIZE = 40
+POWERUP_SPAWN_INTERVAL_MIN = 5.0
+POWERUP_SPAWN_INTERVAL_MAX = 10.0
+POWERUP_TYPES = ("boost", "shield", "repair")
+SHIELD_DURATION = 6.0
+BOOST_DURATION = 4.0
+BOOST_SPEED_MULT = 1.4
+
+# ---------------------------------------------------------------------------
+# Scoring
+# ---------------------------------------------------------------------------
+SCORE_PER_METER = 1.0          # score per unit distance travelled
+SCORE_PASS_BONUS = 25          # bonus score for passing an enemy car
+DISTANCE_PER_SCORE_UNIT = 0.1  # how "distance" (meters) maps to world scroll px
+
+# ---------------------------------------------------------------------------
+# Particles
+# ---------------------------------------------------------------------------
+MAX_PARTICLES = 400
+
+# ---------------------------------------------------------------------------
+# Game states
+# ---------------------------------------------------------------------------
+STATE_MAIN_MENU = "main_menu"
+STATE_INSTRUCTIONS = "instructions"
+STATE_PLAYING = "playing"
+STATE_PAUSED = "paused"
+STATE_GAME_OVER = "game_over"
+STATE_QUIT = "quit"
+""")
+
+
+with open("src/game.py","w") as fs:fs.write("""\
+"""
+game.py
+Top-level Game class: owns the pygame window, the state machine
+(main menu / instructions / playing / paused / game over), and wires
+together the road, player, enemies, power-ups, particles, HUD, menus
+and audio into a single cohesive game loop.
+"""
+
+import random
 import asyncio
-import platform
+
+import pygame
+
+from src import settings
+from src import highscore
+from src.road import Road
+from src.player import Player
+from src.enemy import EnemyManager
+from src.powerup import PowerUpManager
+from src.particles import ParticleSystem
+from src.hud import HUD
+from src.menu import Menu
+from src.audio import AudioEngine
+
+
+class Game:
+    def __init__(self):
+        pygame.init()
+        pygame.display.set_caption(settings.WINDOW_TITLE)
+
+        self.screen = pygame.display.set_mode(
+            (settings.SCREEN_WIDTH, settings.SCREEN_HEIGHT), pygame.RESIZABLE
+        )
+        # We always render to a fixed-size internal surface and scale it to
+        # the actual window size, so the game "scales reasonably" when the
+        # window is resized without needing to rebuild any game logic.
+        self.render_surface = pygame.Surface((settings.SCREEN_WIDTH, settings.SCREEN_HEIGHT))
+
+        self.clock = pygame.time.Clock()
+        self.audio = AudioEngine()
+        self.hud = HUD()
+        self.menu = Menu(self.hud)
+
+        self.high_score = highscore.load_high_score()
+
+        self.state = settings.STATE_MAIN_MENU
+        self.main_menu_index = 0
+        self.pause_index = 0
+        self.game_over_index = 0
+        self.previous_state_for_instructions = settings.STATE_MAIN_MENU
+
+        self.running = True
+
+        self._init_gameplay_objects()
+
+        # Cached last-rendered gameplay frame, used as the backdrop for the
+        # pause overlay so the world appears frozen behind the menu.
+        self._pause_backdrop = None
+
+    # ------------------------------------------------------------------
+    # Setup / reset
+    # ------------------------------------------------------------------
+    def _init_gameplay_objects(self):
+        self.road = Road()
+        self.player = Player(self.road)
+        self.enemies = EnemyManager(self.road)
+        self.powerups = PowerUpManager(self.road)
+        self.particles = ParticleSystem()
+
+        self.score = 0.0
+        self.distance = 0.0
+        self.shake_timer = 0.0
+        self.shake_magnitude = 0.0
+        self.new_high_score_flag = False
+
+    def start_new_game(self):
+        self._init_gameplay_objects()
+        self.state = settings.STATE_PLAYING
+        self.audio.set_engine_playing(True)
+
+    # ------------------------------------------------------------------
+    # Main loop
+    # ------------------------------------------------------------------
+    async def run(self):
+        # The loop is async (and yields with `await asyncio.sleep(0)` every
+        # frame) so this exact same code can run either as a normal desktop
+        # app (via `asyncio.run(game.run())`) or compiled to WebAssembly
+        # with pygbag, which requires the main loop to cooperatively yield
+        # back to the browser's event loop each frame.
+        while self.running:
+            dt = self.clock.tick(settings.FPS) / 1000.0
+            dt = min(dt, 0.05)  # clamp to avoid huge steps if the window stalls
+
+            self._handle_events()
+            self._update(dt)
+            self._draw()
+
+            await asyncio.sleep(0)
+
+        self._shutdown()
+
+    def _shutdown(self):
+        highscore.save_high_score(self.high_score)
+        pygame.quit()
+
+    # ------------------------------------------------------------------
+    # Event handling
+    # ------------------------------------------------------------------
+    def _handle_events(self):
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                self.running = False
+            elif event.type == pygame.VIDEORESIZE:
+                self.screen = pygame.display.set_mode((event.w, event.h), pygame.RESIZABLE)
+            elif event.type == pygame.KEYDOWN:
+                self._handle_keydown(event.key)
+
+    def _handle_keydown(self, key):
+        if self.state == settings.STATE_MAIN_MENU:
+            self._handle_main_menu_key(key)
+        elif self.state == settings.STATE_INSTRUCTIONS:
+            if key in (pygame.K_ESCAPE, pygame.K_RETURN):
+                self.audio.play("menu_select")
+                self.state = self.previous_state_for_instructions
+        elif self.state == settings.STATE_PLAYING:
+            if key == pygame.K_ESCAPE:
+                self.audio.play("menu_select")
+                self.state = settings.STATE_PAUSED
+                self.pause_index = 0
+                self.audio.set_engine_playing(False)
+        elif self.state == settings.STATE_PAUSED:
+            self._handle_pause_key(key)
+        elif self.state == settings.STATE_GAME_OVER:
+            self._handle_game_over_key(key)
+
+    def _handle_main_menu_key(self, key):
+        options_count = 3
+        if key in (pygame.K_UP, pygame.K_w):
+            self.main_menu_index = (self.main_menu_index - 1) % options_count
+            self.audio.play("menu_select")
+        elif key in (pygame.K_DOWN, pygame.K_s):
+            self.main_menu_index = (self.main_menu_index + 1) % options_count
+            self.audio.play("menu_select")
+        elif key == pygame.K_RETURN:
+            self.audio.play("menu_select")
+            if self.main_menu_index == 0:
+                self.start_new_game()
+            elif self.main_menu_index == 1:
+                self.previous_state_for_instructions = settings.STATE_MAIN_MENU
+                self.state = settings.STATE_INSTRUCTIONS
+            elif self.main_menu_index == 2:
+                self.running = False
+
+    def _handle_pause_key(self, key):
+        options_count = 3
+        if key in (pygame.K_UP, pygame.K_w):
+            self.pause_index = (self.pause_index - 1) % options_count
+            self.audio.play("menu_select")
+        elif key in (pygame.K_DOWN, pygame.K_s):
+            self.pause_index = (self.pause_index + 1) % options_count
+            self.audio.play("menu_select")
+        elif key == pygame.K_RETURN:
+            self.audio.play("menu_select")
+            if self.pause_index == 0:
+                self.state = settings.STATE_PLAYING
+                self.audio.set_engine_playing(True)
+            elif self.pause_index == 1:
+                self.start_new_game()
+            elif self.pause_index == 2:
+                self.state = settings.STATE_MAIN_MENU
+                self.main_menu_index = 0
+
+    def _handle_game_over_key(self, key):
+        options_count = 3
+        if key in (pygame.K_UP, pygame.K_w):
+            self.game_over_index = (self.game_over_index - 1) % options_count
+            self.audio.play("menu_select")
+        elif key in (pygame.K_DOWN, pygame.K_s):
+            self.game_over_index = (self.game_over_index + 1) % options_count
+            self.audio.play("menu_select")
+        elif key == pygame.K_r:
+            self.audio.play("menu_select")
+            self.start_new_game()
+        elif key == pygame.K_RETURN:
+            self.audio.play("menu_select")
+            if self.game_over_index == 0:
+                self.start_new_game()
+            elif self.game_over_index == 1:
+                self.state = settings.STATE_MAIN_MENU
+                self.main_menu_index = 0
+            elif self.game_over_index == 2:
+                self.running = False
+
+    # ------------------------------------------------------------------
+    # Update
+    # ------------------------------------------------------------------
+    def _update(self, dt):
+        if self.state == settings.STATE_MAIN_MENU:
+            self.menu.update(dt)
+        elif self.state == settings.STATE_INSTRUCTIONS:
+            self.menu.update(dt)
+        elif self.state == settings.STATE_PLAYING:
+            self._update_gameplay(dt)
+        elif self.state == settings.STATE_GAME_OVER:
+            self.menu.update(dt)
+
+    def _update_gameplay(self, dt):
+        keys = pygame.key.get_pressed()
+        self.player.handle_input(dt, keys)
+        self.player.update(dt)
+
+        world_speed = self.player.speed
+
+        self.road.update(dt, world_speed)
+        passed_count = self.enemies.update(dt, world_speed, self.player)
+        self.powerups.update(dt, world_speed)
+        self.particles.update(dt)
+
+        # Scoring: distance-based + bonus for passing enemies.
+        self.distance += max(0.0, world_speed) * dt * settings.DISTANCE_PER_SCORE_UNIT
+        self.score += max(0.0, world_speed) * dt * settings.DISTANCE_PER_SCORE_UNIT * settings.SCORE_PER_METER
+        if passed_count:
+            self.score += passed_count * settings.SCORE_PASS_BONUS
+            for _ in range(passed_count):
+                self.particles.emit_powerup_sparkle(self.player.x, self.player.y - 60, settings.COLOR_WHITE)
+
+        # Speed line / nitro particle effects.
+        self.particles.emit_speed_lines(self.player.x, self.player.y, self.player.speed_factor())
+        if self.player.nitro_active:
+            self.audio.play("nitro") if random.random() < 0.02 else None
+            self.particles.emit_nitro_flame(
+                self.player.x - self.player.width * 0.22, self.player.y + self.player.height * 0.45
+            )
+            self.particles.emit_nitro_flame(
+                self.player.x + self.player.width * 0.22, self.player.y + self.player.height * 0.45
+            )
+
+        # Power-up pickups.
+        collected = self.powerups.check_pickups(self.player)
+        for p in collected:
+            self.player.apply_powerup(p.kind)
+            self.audio.play("powerup")
+            color = {
+                "boost": settings.COLOR_BOOST,
+                "shield": settings.COLOR_SHIELD,
+                "repair": settings.COLOR_REPAIR,
+            }[p.kind]
+            self.particles.emit_pickup_burst(p.x, p.y, color)
+
+        # Collisions.
+        if self.enemies.check_collisions(self.player):
+            damaged = self.player.take_hit()
+            if damaged:
+                self.audio.play("collision")
+                self.particles.emit_collision(self.player.x, self.player.y)
+                self.shake_timer = 0.35
+                self.shake_magnitude = 10.0
+                if self.player.lives <= 0:
+                    self._trigger_game_over()
+
+        if self.shake_timer > 0:
+            self.shake_timer -= dt
+
+        if self.score > self.high_score:
+            self.high_score = self.score
+            self.new_high_score_flag = True
+
+    def _trigger_game_over(self):
+        self.audio.set_engine_playing(False)
+        self.audio.play("game_over")
+        if self.score > self.high_score:
+            self.high_score = self.score
+            self.new_high_score_flag = True
+        highscore.save_high_score(self.high_score)
+        self.state = settings.STATE_GAME_OVER
+        self.game_over_index = 0
+
+    def _current_shake_offset(self):
+        if self.shake_timer <= 0:
+            return (0, 0)
+        magnitude = self.shake_magnitude * (self.shake_timer / 0.35)
+        return (
+            random.uniform(-magnitude, magnitude),
+            random.uniform(-magnitude, magnitude),
+        )
+
+    # ------------------------------------------------------------------
+    # Drawing
+    # ------------------------------------------------------------------
+    def _draw(self):
+        surf = self.render_surface
+
+        if self.state == settings.STATE_MAIN_MENU:
+            self.menu.draw_main_menu(surf, self.main_menu_index, self.high_score)
+        elif self.state == settings.STATE_INSTRUCTIONS:
+            self.menu.draw_instructions(surf)
+        elif self.state == settings.STATE_PLAYING:
+            self._draw_gameplay(surf)
+        elif self.state == settings.STATE_PAUSED:
+            # Draw the frozen gameplay frame then overlay the pause menu.
+            gameplay_surf = pygame.Surface((settings.SCREEN_WIDTH, settings.SCREEN_HEIGHT))
+            self._draw_gameplay(gameplay_surf, draw_hud=False)
+            self.menu.draw_pause(surf, gameplay_surf, self.pause_index)
+        elif self.state == settings.STATE_GAME_OVER:
+            self.menu.draw_game_over(
+                surf, self.game_over_index, self.score, self.high_score,
+                self.distance, self.new_high_score_flag
+            )
+
+        self._blit_to_window(surf)
+        pygame.display.flip()
+
+    def _draw_gameplay(self, surf, draw_hud=True):
+        shake = self._current_shake_offset()
+        self.road.draw(surf, self.player.speed, shake)
+        self.powerups.draw(surf, shake)
+        self.enemies.draw(surf, shake)
+        self.player.draw(surf, shake)
+        self.particles.draw(surf)
+
+        if draw_hud:
+            fps = self.clock.get_fps()
+            self.hud.draw_gameplay_hud(
+                surf, self.score, self.high_score, self.distance,
+                self.player.lives, self.player.nitro, fps
+            )
+
+    def _blit_to_window(self, surf):
+        window_size = self.screen.get_size()
+        if window_size == (settings.SCREEN_WIDTH, settings.SCREEN_HEIGHT):
+            self.screen.blit(surf, (0, 0))
+            return
+
+        # Scale while preserving aspect ratio, letterboxing as needed.
+        target_w, target_h = window_size
+        src_ratio = settings.SCREEN_WIDTH / settings.SCREEN_HEIGHT
+        target_ratio = target_w / max(1, target_h)
+
+        if target_ratio > src_ratio:
+            new_h = target_h
+            new_w = int(new_h * src_ratio)
+        else:
+            new_w = target_w
+            new_h = int(new_w / src_ratio)
+
+        scaled = pygame.transform.smoothscale(surf, (max(1, new_w), max(1, new_h)))
+        self.screen.fill(settings.COLOR_BLACK)
+        x = (target_w - new_w) // 2
+        y = (target_h - new_h) // 2
+        self.screen.blit(scaled, (x, y))
+""")
+
+
+with open("src/particles.py","w") as fs:fs.write("""\
+"""
+particles.py
+A lightweight particle system used for speed lines, nitro flame trails,
+collision sparks and power-up sparkles. Designed to be cheap to update
+and draw so it stays smooth even on modest hardware.
+"""
+
+import random
+import pygame
+
+from src import settings
+
+
+class Particle:
+    __slots__ = (
+        "x", "y", "vx", "vy", "life", "max_life", "size", "color", "shrink", "gravity"
+    )
+
+    def __init__(self, x, y, vx, vy, life, size, color, shrink=True, gravity=0.0):
+        self.x = x
+        self.y = y
+        self.vx = vx
+        self.vy = vy
+        self.life = life
+        self.max_life = life
+        self.size = size
+        self.color = color
+        self.shrink = shrink
+        self.gravity = gravity
+
+    def update(self, dt):
+        self.x += self.vx * dt
+        self.y += self.vy * dt
+        self.vy += self.gravity * dt
+        self.life -= dt
+        return self.life > 0
+
+    def draw(self, surface):
+        if self.life <= 0:
+            return
+        t = max(0.0, self.life / self.max_life)
+        alpha = int(255 * t)
+        size = self.size * (t if self.shrink else 1.0)
+        if size < 0.5:
+            return
+        radius = max(1, int(size))
+        temp = pygame.Surface((radius * 2, radius * 2), pygame.SRCALPHA)
+        color = (self.color[0], self.color[1], self.color[2], alpha)
+        pygame.draw.circle(temp, color, (radius, radius), radius)
+        surface.blit(temp, (self.x - radius, self.y - radius), special_flags=pygame.BLEND_RGBA_ADD)
+
+
+class ParticleSystem:
+    """Manages a pool of particles with a soft cap to avoid unbounded growth."""
+
+    def __init__(self, max_particles=settings.MAX_PARTICLES):
+        self.particles = []
+        self.max_particles = max_particles
+
+    def _add(self, particle):
+        if len(self.particles) >= self.max_particles:
+            # Drop the oldest particle to make room.
+            self.particles.pop(0)
+        self.particles.append(particle)
+
+    def emit_speed_lines(self, x, y, speed_factor):
+        """Streaks that fly past the player to sell a sense of speed."""
+        if speed_factor < 0.35:
+            return
+        if random.random() < speed_factor * 0.6:
+            side = random.choice([-1, 1])
+            px = x + side * random.uniform(140, 320)
+            py = y - random.uniform(200, 320)
+            vy = 900 + speed_factor * 700
+            self._add(Particle(
+                px, py, 0, vy, life=0.35, size=random.uniform(2, 4),
+                color=(200, 230, 255), shrink=True
+            ))
+
+    def emit_nitro_flame(self, x, y):
+        for _ in range(2):
+            vx = random.uniform(-40, 40)
+            vy = random.uniform(220, 420)
+            color = random.choice([
+                (255, 140, 0), (255, 200, 40), (255, 60, 0)
+            ])
+            self._add(Particle(
+                x + random.uniform(-8, 8), y, vx, vy,
+                life=random.uniform(0.25, 0.5),
+                size=random.uniform(4, 9),
+                color=color, shrink=True
+            ))
+
+    def emit_collision(self, x, y):
+        for _ in range(28):
+            angle = random.uniform(0, 6.28318)
+            speed = random.uniform(80, 380)
+            vx = speed * pygame.math.Vector2(1, 0).rotate_rad(angle).x
+            vy = speed * pygame.math.Vector2(1, 0).rotate_rad(angle).y
+            color = random.choice([
+                (255, 220, 60), (255, 120, 30), (255, 250, 220)
+            ])
+            self._add(Particle(
+                x, y, vx, vy, life=random.uniform(0.3, 0.7),
+                size=random.uniform(3, 7), color=color, shrink=True, gravity=200
+            ))
+
+    def emit_powerup_sparkle(self, x, y, color):
+        for _ in range(10):
+            angle = random.uniform(0, 6.28318)
+            speed = random.uniform(20, 90)
+            vx = speed * pygame.math.Vector2(1, 0).rotate_rad(angle).x
+            vy = speed * pygame.math.Vector2(1, 0).rotate_rad(angle).y
+            self._add(Particle(
+                x, y, vx, vy, life=random.uniform(0.4, 0.9),
+                size=random.uniform(2, 5), color=color, shrink=True
+            ))
+
+    def emit_pickup_burst(self, x, y, color):
+        for _ in range(22):
+            angle = random.uniform(0, 6.28318)
+            speed = random.uniform(60, 260)
+            vx = speed * pygame.math.Vector2(1, 0).rotate_rad(angle).x
+            vy = speed * pygame.math.Vector2(1, 0).rotate_rad(angle).y
+            self._add(Particle(
+                x, y, vx, vy, life=random.uniform(0.35, 0.75),
+                size=random.uniform(3, 6), color=color, shrink=True
+            ))
+
+    def update(self, dt):
+        self.particles = [p for p in self.particles if p.update(dt)]
+
+    def draw(self, surface):
+        for p in self.particles:
+            p.draw(surface)
+
+    def clear(self):
+        self.particles.clear()
+""")
+
+
+with open("src/highscore.py","w") as fs:fs.write("""\
+"""
+highscore.py
+Loads and saves the local high score as JSON in the user-writable
+data/ directory. Fails gracefully (falls back to 0 / in-memory only)
+if the file is missing, corrupted, or the directory is not writable.
+"""
+
 import json
-from pathlib import Path
+import os
 
-# do not rename
-async def custom_site():
-    import embed
-    platform.document.body.style.background = "#7f7f7f"
-
-    platform.window.transfer.hidden = true
-    platform.window.canvas.style.visibility = "visible"
+from src import settings
 
 
-    bundle = "neon-street-racer"
-
-    # the C or js loader could do that but be explicit.
-    appdir = Path(f"/data/data/{bundle}") # /data/data/neon-street-racer
-    appdir.mkdir()
-
-
-    # unpack filesystem from compressed archive into work dir
-    if platform.window.location.host.find('.itch.zone')>0:
-        import zipfile
-        async with platform.fopen("neon-street-racer.apk", "rb") as archive:
-            with zipfile.ZipFile(archive) as zip_ref:
-                zip_ref.extractall(appdir.as_posix())
-    else:
-        import tarfile
-        async with platform.fopen("neon-street-racer.tar.gz", "rb") as archive:
-            tar = tarfile.open(fileobj=archive, mode="r:gz")
-            tar.extractall(path=appdir.as_posix(), filter='tar')
-            tar.close()
-
-    # preloader will change to work dir and prepend it to sys.path
-    platform.run_main(PyConfig, loaderhome= appdir / "assets", loadermain=None)
+def load_high_score():
+    try:
+        if os.path.exists(settings.HIGHSCORE_FILE):
+            with open(settings.HIGHSCORE_FILE, "r", encoding="utf-8") as f:
+                data = json.load(f)
+                return float(data.get("high_score", 0))
+    except (json.JSONDecodeError, ValueError, OSError):
+        pass
+    return 0.0
 
 
-    # wait preloading complete : that includes images and wasm compilation of bundled modules
-    while embed.counter()<0:
-        await asyncio.sleep(.1)
-
-    main = appdir / "assets" / "main.py"
-
-    # TODO: test for window.webkitAudioContext and block aio loop until gesture if accessing media manager play
-    # before a gesture is recorded ( touch or click )
-
-    # test/wait user media interaction
-    if not platform.window.MM.UME:
-
-        # now that apk is mounted we have access to font cache
-        # but we need to fill __file__ that is not yet set
-        __import__(__name__).__file__ = main
-
-        # now make a prompt
-        msg  = "Ready to start ! Please click/touch page"
-        platform.window.infobox.innerText = msg
-        print("\n"*4, f"    * Waiting for media user engagement. {msg} *" , "\n"*4)
-
-        while not platform.window.MM.UME:
-            await asyncio.sleep(.1)
-
-    # start async top level machinery if not started and add a console in any case if requested.
-    await TopLevel_async_handler.start_toplevel(platform.shell, console=window.python.config.debug)
-
-    # now that apk is mounted we have access to font cache
-    # but we need to fill __file__/__name__ that are not yet set
-    __import__(__name__).__file__ = main
+def save_high_score(value):
+    try:
+        os.makedirs(settings.DATA_DIR, exist_ok=True)
+        with open(settings.HIGHSCORE_FILE, "w", encoding="utf-8") as f:
+            json.dump({"high_score": value}, f)
+        return True
+    except OSError:
+        return False
+""")
 
 
-    def ui_callback(pkg):
-        platform.window.infobox.innerText = f"installing {pkg}"
+with open("src/player.py","w") as fs:fs.write("""\
+"""
+player.py
+Player-controlled car: movement physics (acceleration, braking, steering
+with inertia), nitro boost, shield/power-up state, collision handling and
+procedural rendering of a neon sports car sprite.
+"""
 
-    await shell.source(main, callback=ui_callback)
+import math
+import pygame
 
-    # if you don't reach that step
-    # your main.py has an infinite sync loop somewhere !
-
-    platform.window.infobox.style.display = "none"
-    platform.window.config.gui_divider = 1
-    platform.window.window_resize()
-    print("default.tmpl: done")
-
-    shell.interactive()
-
-asyncio.run( custom_site() )
+from src import settings
 
 
+def build_car_surface(width, height, body_color, glow_color, window_color=(20, 24, 34)):
+    """Procedurally builds a small top-down car sprite with a neon glow."""
+    pad = 14
+    surf = pygame.Surface((width + pad * 2, height + pad * 2), pygame.SRCALPHA)
+    cx = surf.get_width() // 2
+    cy = surf.get_height() // 2
+
+    body_rect = pygame.Rect(0, 0, width, height)
+    body_rect.center = (cx, cy)
+
+    # Soft outer glow (a few translucent expanding rounded rects).
+    for i in range(4, 0, -1):
+        glow_rect = body_rect.inflate(i * 6, i * 6)
+        glow_surf = pygame.Surface(surf.get_size(), pygame.SRCALPHA)
+        pygame.draw.rect(glow_surf, (*glow_color, 18), glow_rect, border_radius=18)
+        surf.blit(glow_surf, (0, 0), special_flags=pygame.BLEND_RGBA_ADD)
+
+    # Car body.
+    pygame.draw.rect(surf, body_color, body_rect, border_radius=14)
+    pygame.draw.rect(surf, (255, 255, 255), body_rect, width=2, border_radius=14)
+
+    # Windshield / cabin.
+    cabin_rect = pygame.Rect(0, 0, width * 0.62, height * 0.32)
+    cabin_rect.center = (cx, cy - height * 0.10)
+    pygame.draw.rect(surf, window_color, cabin_rect, border_radius=8)
+
+    # Rear window.
+    rear_rect = pygame.Rect(0, 0, width * 0.5, height * 0.16)
+    rear_rect.center = (cx, cy + height * 0.30)
+    pygame.draw.rect(surf, window_color, rear_rect, border_radius=6)
+
+    # Headlights / taillights for orientation.
+    light_w = width * 0.16
+    light_h = height * 0.06
+    for dx in (-1, 1):
+        head = pygame.Rect(0, 0, light_w, light_h)
+        head.center = (cx + dx * width * 0.28, cy - height * 0.46)
+        pygame.draw.rect(surf, (255, 255, 210), head, border_radius=3)
+
+        tail = pygame.Rect(0, 0, light_w, light_h)
+        tail.center = (cx + dx * width * 0.28, cy + height * 0.46)
+        pygame.draw.rect(surf, (255, 60, 60), tail, border_radius=3)
+
+    # Center racing stripe.
+    stripe_rect = pygame.Rect(0, 0, width * 0.14, height * 0.86)
+    stripe_rect.center = (cx, cy)
+    pygame.draw.rect(surf, (255, 255, 255), stripe_rect, border_radius=6)
+
+    return surf
 
 
+class Player:
+    def __init__(self, road):
+        self.road = road
+        self.width = settings.CAR_WIDTH
+        self.height = settings.CAR_HEIGHT
+
+        self.x = road.lane_center_x(settings.PLAYER_START_X_LANE)
+        self.y = settings.SCREEN_HEIGHT - 150
+        self.vx = 0.0
+        self.speed = settings.PLAYER_MIN_SPEED  # forward world speed
+
+        self.lives = settings.PLAYER_START_LIVES
+        self.invulnerable_timer = 0.0
+        self.hit_flash_timer = 0.0
+
+        self.nitro = settings.NITRO_MAX
+        self.nitro_active = False
+
+        self.shield_timer = 0.0
+        self.boost_timer = 0.0
+
+        self.sprite = build_car_surface(
+            self.width, self.height, settings.COLOR_PLAYER, settings.COLOR_PLAYER_GLOW
+        )
+        self.shield_pulse = 0.0
+
+    @property
+    def rect(self):
+        return pygame.Rect(
+            int(self.x - self.width / 2), int(self.y - self.height / 2),
+            self.width, self.height
+        )
+
+    @property
+    def is_invulnerable(self):
+        return self.invulnerable_timer > 0 or self.shield_timer > 0
+
+    def handle_input(self, dt, keys):
+        accelerating = keys[pygame.K_w] or keys[pygame.K_UP]
+        braking = keys[pygame.K_s] or keys[pygame.K_DOWN]
+        steer_left = keys[pygame.K_a] or keys[pygame.K_LEFT]
+        steer_right = keys[pygame.K_d] or keys[pygame.K_RIGHT]
+        want_nitro = keys[pygame.K_SPACE]
+
+        # --- Forward speed (acceleration / braking / drag) ---
+        if accelerating:
+            self.speed += settings.PLAYER_ACCEL * dt
+        elif braking:
+            self.speed -= settings.PLAYER_BRAKE_DECEL * dt
+        else:
+            # Natural drag pulls speed back toward the minimum cruising speed.
+            if self.speed > settings.PLAYER_MIN_SPEED:
+                self.speed -= settings.PLAYER_NATURAL_DECEL * dt
+            elif self.speed < settings.PLAYER_MIN_SPEED:
+                self.speed += settings.PLAYER_NATURAL_DECEL * dt
+
+        max_speed = settings.PLAYER_MAX_SPEED
+        if self.boost_timer > 0:
+            max_speed *= settings.BOOST_SPEED_MULT
+
+        # --- Nitro ---
+        self.nitro_active = False
+        if want_nitro and self.nitro > settings.NITRO_MIN_TO_ACTIVATE:
+            self.nitro_active = True
+            self.nitro = max(0.0, self.nitro - settings.NITRO_DRAIN_RATE * dt)
+            max_speed *= settings.NITRO_SPEED_MULT
+        else:
+            self.nitro = min(settings.NITRO_MAX, self.nitro + settings.NITRO_REGEN_RATE * dt)
+
+        self.speed = max(settings.PLAYER_REVERSE_SPEED, min(max_speed, self.speed))
+
+        # --- Steering with inertia ---
+        target_vx = 0.0
+        if steer_left and not steer_right:
+            target_vx = -settings.PLAYER_STEER_SPEED
+        elif steer_right and not steer_left:
+            target_vx = settings.PLAYER_STEER_SPEED
+
+        if target_vx != 0.0:
+            if self.vx < target_vx:
+                self.vx = min(target_vx, self.vx + settings.PLAYER_STEER_ACCEL * dt)
+            else:
+                self.vx = max(target_vx, self.vx - settings.PLAYER_STEER_ACCEL * dt)
+        else:
+            if self.vx > 0:
+                self.vx = max(0.0, self.vx - settings.PLAYER_STEER_FRICTION * dt)
+            elif self.vx < 0:
+                self.vx = min(0.0, self.vx + settings.PLAYER_STEER_FRICTION * dt)
+
+        self.x += self.vx * dt
+
+        # Clamp to road bounds.
+        half_w = self.width / 2
+        min_x = settings.ROAD_LEFT + half_w + 6
+        max_x = settings.ROAD_RIGHT - half_w - 6
+        if self.x < min_x:
+            self.x = min_x
+            self.vx = 0.0
+        elif self.x > max_x:
+            self.x = max_x
+            self.vx = 0.0
+
+    def update(self, dt):
+        if self.invulnerable_timer > 0:
+            self.invulnerable_timer -= dt
+        if self.hit_flash_timer > 0:
+            self.hit_flash_timer -= dt
+        if self.shield_timer > 0:
+            self.shield_timer -= dt
+        if self.boost_timer > 0:
+            self.boost_timer -= dt
+        self.shield_pulse += dt * 6.0
+
+    def apply_powerup(self, kind):
+        if kind == "shield":
+            self.shield_timer = settings.SHIELD_DURATION
+        elif kind == "boost":
+            self.boost_timer = settings.BOOST_DURATION
+        elif kind == "repair":
+            self.lives = min(settings.PLAYER_START_LIVES, self.lives + 1)
+
+    def take_hit(self):
+        """Returns True if the hit actually damaged the player (not invulnerable)."""
+        if self.is_invulnerable:
+            return False
+        self.lives -= 1
+        self.invulnerable_timer = settings.PLAYER_INVULNERABLE_TIME
+        self.hit_flash_timer = 0.35
+        self.speed = max(settings.PLAYER_MIN_SPEED * 0.5, self.speed - 120)
+        return True
+
+    def draw(self, surface, shake_offset=(0, 0)):
+        ox, oy = shake_offset
+        draw_x = self.x + ox
+        draw_y = self.y + oy
+
+        # Flicker while invulnerable (but not when a shield is actively up,
+        # which gets its own persistent ring instead).
+        visible = True
+        if self.invulnerable_timer > 0 and self.shield_timer <= 0:
+            visible = int(self.invulnerable_timer * 12) % 2 == 0
+
+        if visible:
+            rect = self.sprite.get_rect(center=(draw_x, draw_y))
+            surface.blit(self.sprite, rect)
+
+        if self.hit_flash_timer > 0:
+            flash = pygame.Surface(self.sprite.get_size(), pygame.SRCALPHA)
+            alpha = int(180 * (self.hit_flash_timer / 0.35))
+            flash.fill((255, 255, 255, alpha))
+            rect = self.sprite.get_rect(center=(draw_x, draw_y))
+            surface.blit(flash, rect, special_flags=pygame.BLEND_RGBA_ADD)
+
+        if self.shield_timer > 0:
+            radius = max(self.width, self.height) * 0.62 + math.sin(self.shield_pulse) * 3
+            ring_surf = pygame.Surface((radius * 2 + 8, radius * 2 + 8), pygame.SRCALPHA)
+            pygame.draw.circle(
+                ring_surf, (*settings.COLOR_SHIELD, 110),
+                (radius + 4, radius + 4), radius, width=4
+            )
+            rect = ring_surf.get_rect(center=(draw_x, draw_y))
+            surface.blit(ring_surf, rect, special_flags=pygame.BLEND_RGBA_ADD)
+
+        if self.boost_timer > 0:
+            tint = pygame.Surface(self.sprite.get_size(), pygame.SRCALPHA)
+            tint.fill((*settings.COLOR_BOOST, 40))
+            rect = self.sprite.get_rect(center=(draw_x, draw_y))
+            surface.blit(tint, rect, special_flags=pygame.BLEND_RGBA_ADD)
+
+    def speed_factor(self):
+        """Normalized 0..1+ speed used for visual effects like speed lines."""
+        return max(0.0, self.speed / settings.PLAYER_MAX_SPEED)
+""")
 
 
+with open("src/enemy.py","w") as fs:fs.write("""\
+"""
+enemy.py
+Enemy traffic: spawning logic (random lane, speed, fair gap-checking),
+movement relative to the player's world speed, and rendering.
+"""
+
+import random
+import pygame
+
+from src import settings
+from src.player import build_car_surface
 
 
+_SPRITE_CACHE = {}
 
 
+def _get_sprite(color):
+    if color not in _SPRITE_CACHE:
+        glow = tuple(min(255, c + 40) for c in color)
+        _SPRITE_CACHE[color] = build_car_surface(
+            settings.ENEMY_WIDTH, settings.ENEMY_HEIGHT, color, glow
+        )
+    return _SPRITE_CACHE[color]
 
 
-# BEGIN BLOCK
-#
-# now this is the html part you can (and should) customize
-# It is not mandatory : pygame-script when it reads the first line (also called
-# shebang ) of above code create absolute minimal widget set
-# required for running with default rules
-#
-# do not alter that comment block it is separating python code from html code
-# =============================================================================
-# --></script><head><!--
-//=============================================================================
-//
-//
-//
-//
-//
-//
-//
+class Enemy:
+    def __init__(self, lane_index, y, base_speed, color):
+        self.lane_index = lane_index
+        self.x = 0  # set by manager via road reference
+        self.y = y
+        self.base_speed = base_speed
+        self.color = color
+        self.width = settings.ENEMY_WIDTH
+        self.height = settings.ENEMY_HEIGHT
+        self.sprite = _get_sprite(color)
+        self.passed = False  # whether the player has already scored for passing this one
 
-    {%- if cookiecutter.comment != "" -%}
-{{cookiecutter.comment}}
-    {% endif %}
+    @property
+    def rect(self):
+        return pygame.Rect(
+            int(self.x - self.width / 2), int(self.y - self.height / 2),
+            self.width, self.height
+        )
 
---><script type="application/javascript">
-// END BLOCK
+    def update(self, dt, world_speed):
+        # Enemies appear to move toward the player based on the *relative*
+        # speed between the player's forward speed and the enemy's own
+        # (slower) base speed -- this creates natural closing behavior.
+        relative_speed = world_speed - self.base_speed
+        self.y += relative_speed * dt
+
+    def draw(self, surface, shake_offset=(0, 0)):
+        ox, oy = shake_offset
+        rect = self.sprite.get_rect(center=(self.x + ox, self.y + oy))
+        surface.blit(self.sprite, rect)
+
+    def is_off_screen(self):
+        return self.y - self.height > settings.SCREEN_HEIGHT + 40 or self.y + self.height < -200
 
 
+class EnemyManager:
+    def __init__(self, road):
+        self.road = road
+        self.enemies = []
+        self.spawn_timer = 0.0
+        self.elapsed = 0.0
 
-// this dict is available under PyConfig.config from __main__
+    def reset(self):
+        self.enemies.clear()
+        self.spawn_timer = 0.0
+        self.elapsed = 0.0
 
-config = {
-    xtermjs : "1" ,
-    _sdl2 : "canvas",
-    user_canvas : 0,
-    user_canvas_managed : 0,
-    gui_divider : 2,
-    ume_block : 1,
-    can_close : 0,
-    archive : "neon-street-racer",
-    gui_debug : 2,
-    cdn : "https://pygame-web.github.io/cdn/0.9.3/",
-    autorun : 0,
-    PYBUILD : "3.12",
-    fb_ar   :  1.77,
-    fb_width : "1280",
-    fb_height : "720"
+    def _difficulty_ramp(self):
+        """0..1 progress toward maximum difficulty."""
+        return min(1.0, self.elapsed / settings.DIFFICULTY_RAMP_TIME)
+
+    def _current_spawn_interval(self):
+        ramp = self._difficulty_ramp()
+        start = settings.ENEMY_SPAWN_INTERVAL_START
+        end = settings.ENEMY_SPAWN_INTERVAL_MIN
+        return start + (end - start) * ramp
+
+    def _current_speed_range(self):
+        ramp = self._difficulty_ramp()
+        bonus = settings.DIFFICULTY_SPEED_BONUS_MAX * ramp
+        return (
+            settings.ENEMY_BASE_SPEED_MIN + bonus * 0.3,
+            settings.ENEMY_BASE_SPEED_MAX + bonus,
+        )
+
+    def _lane_is_clear(self, lane_index, spawn_y):
+        for e in self.enemies:
+            if e.lane_index == lane_index:
+                if abs(e.y - spawn_y) < settings.ENEMY_MIN_VERTICAL_GAP:
+                    return False
+        return True
+
+    def _spawn_one(self):
+        candidate_lanes = list(range(settings.LANE_COUNT))
+        random.shuffle(candidate_lanes)
+        spawn_y = -settings.ENEMY_HEIGHT
+
+        for lane in candidate_lanes:
+            if self._lane_is_clear(lane, spawn_y):
+                speed_min, speed_max = self._current_speed_range()
+                base_speed = random.uniform(speed_min, speed_max)
+                color = random.choice(settings.ENEMY_COLORS)
+                enemy = Enemy(lane, spawn_y, base_speed, color)
+                enemy.x = self.road.lane_center_x(lane)
+                self.enemies.append(enemy)
+                return
+
+        # All lanes currently blocked near the top -- skip this spawn cycle
+        # to avoid an unfair pile-up at the spawn line.
+
+    def _ensure_fair_start(self, player_lane):
+        """Guarantees the player's current lane is never instantly blocked
+        right after a spawn by nudging the spawn choice away from a
+        too-close same-lane enemy. Used implicitly via the min-gap check;
+        kept as a hook for future fairness tuning."""
+        return True
+
+    def update(self, dt, world_speed, player):
+        self.elapsed += dt
+        self.spawn_timer -= dt
+        if self.spawn_timer <= 0:
+            self._spawn_one()
+            self.spawn_timer = self._current_spawn_interval()
+
+        passed_count = 0
+        for enemy in self.enemies:
+            enemy.update(dt, world_speed)
+            if not enemy.passed and enemy.y > player.y + player.height:
+                enemy.passed = True
+                passed_count += 1
+
+        self.enemies = [e for e in self.enemies if not e.is_off_screen()]
+        return passed_count
+
+    def draw(self, surface, shake_offset=(0, 0)):
+        for enemy in self.enemies:
+            enemy.draw(surface, shake_offset)
+
+    def check_collisions(self, player):
+        if player.is_invulnerable:
+            return False
+        player_rect = player.rect
+        for enemy in self.enemies:
+            if player_rect.colliderect(enemy.rect):
+                return True
+        return False
+""")
+
+
+with open("src/powerup.py","w") as fs:fs.write("""\
+"""
+powerup.py
+Random power-up pickups that scroll down the road: nitro boost,
+shield, and repair (extra life). Includes spawn timing and rendering.
+"""
+
+import math
+import random
+import pygame
+
+from src import settings
+
+
+_ICON_COLORS = {
+    "boost": settings.COLOR_BOOST,
+    "shield": settings.COLOR_SHIELD,
+    "repair": settings.COLOR_REPAIR,
 }
 
-function show_infobox() {
-    infobox.style.display = "block";
 
-    // Measure box
-    const w = infobox.offsetWidth;
-    const h = infobox.offsetHeight;
+class PowerUp:
+    def __init__(self, kind, lane_index, y):
+        self.kind = kind
+        self.lane_index = lane_index
+        self.x = 0
+        self.y = y
+        self.size = settings.POWERUP_SIZE
+        self.pulse = random.uniform(0, 6.28)
 
-    // Center in viewport
-    const left = (window.innerWidth - w) / 2;
-    const top = (window.innerHeight - h) / 2;
+    @property
+    def rect(self):
+        return pygame.Rect(
+            int(self.x - self.size / 2), int(self.y - self.size / 2),
+            self.size, self.size
+        )
 
-    infobox.style.left = left + "px";
-    infobox.style.top = top + "px";
-}
+    def update(self, dt, world_speed):
+        self.y += world_speed * dt
+        self.pulse += dt * 4.0
 
-</script>
+    def is_off_screen(self):
+        return self.y - self.size > settings.SCREEN_HEIGHT + 40
 
-    <title>neon-street-racer</title>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="viewport" content="height=device-height, initial-scale=1.0">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    def draw(self, surface, shake_offset=(0, 0)):
+        ox, oy = shake_offset
+        color = _ICON_COLORS[self.kind]
+        cx, cy = self.x + ox, self.y + oy
+        pulse_radius = self.size / 2 + math.sin(self.pulse) * 3
 
+        glow = pygame.Surface((int(pulse_radius * 3), int(pulse_radius * 3)), pygame.SRCALPHA)
+        gcx, gcy = glow.get_width() / 2, glow.get_height() / 2
+        pygame.draw.circle(glow, (*color, 70), (gcx, gcy), pulse_radius * 1.4)
+        surface.blit(glow, (cx - gcx, cy - gcy), special_flags=pygame.BLEND_RGBA_ADD)
 
-    <link rel="icon" type="image/png" href="favicon.png" sizes="16x16">
+        pygame.draw.circle(surface, color, (cx, cy), self.size / 2)
+        pygame.draw.circle(surface, settings.COLOR_WHITE, (cx, cy), self.size / 2, width=2)
 
-    <style>
-        #status {
-            display: inline-block;
-            vertical-align: top;
-            margin-top: 20px;
-            margin-left: 30px;
-            font-weight: bold;
-            color: rgb(120, 120, 120);
-        }
+        if self.kind == "boost":
+            self._draw_lightning(surface, cx, cy)
+        elif self.kind == "shield":
+            self._draw_shield_icon(surface, cx, cy)
+        elif self.kind == "repair":
+            self._draw_plus(surface, cx, cy)
 
-        #progress {
-            height: 20px;
-            width: 300px;
-        }
+    def _draw_lightning(self, surface, cx, cy):
+        s = self.size * 0.28
+        points = [
+            (cx - s * 0.2, cy - s), (cx + s * 0.5, cy - s * 0.1),
+            (cx + s * 0.05, cy - s * 0.1), (cx + s * 0.3, cy + s),
+            (cx - s * 0.5, cy + s * 0.1), (cx - s * 0.05, cy + s * 0.1),
+        ]
+        pygame.draw.polygon(surface, settings.COLOR_BLACK, points)
 
-        #infobox {
-            position: fixed; /* center relative to viewport */
-            background: green;
-            color: blue;
-            font-weight: bold;
-            padding: 12px 24px;
- /*           display: none; */
-            z-index: 999999;
-        }
-        div.emscripten { text-align: center; }
-        div.emscripten_border { border: 1px solid black; }
-        div.thick_border { border: 4px solid black; }
+    def _draw_shield_icon(self, surface, cx, cy):
+        s = self.size * 0.3
+        points = [
+            (cx, cy - s), (cx + s * 0.85, cy - s * 0.4),
+            (cx + s * 0.6, cy + s * 0.8), (cx, cy + s),
+            (cx - s * 0.6, cy + s * 0.8), (cx - s * 0.85, cy - s * 0.4),
+        ]
+        pygame.draw.polygon(surface, settings.COLOR_BLACK, points, width=3)
 
-        /* the canvas *must not* have any border or padding, or mouse coords will be wrong */
-        /* average size of droid screen 470dp x 320dp  */
-        canvas.emscripten {
-            border: 0px none;
-            background-color: transparent;
-            width: 100%;
-            height: 100%;
-            z-index: 5;
-
-            padding: 0;
-            margin: 0 auto;
-
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            right: 0;
-        }
-
-        body {
-            font-family: arial;
-            margin: 0;
-            padding: none;
-            background-color:powderblue;
-        }
-
-        .topright{
-           position:absolute;
-           top:0px;
-           right:0px;
-        }
-
-        .bottomright {
-            position:absolute;
-            top: 40%;
-            right: 0px;
-        }
-
-        .center {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .trinfo{
-           position: relative;
-           right: 0px;
-           border: 1px solid black;
-        }
-
-        .framed{
-           position: relative;
-           top: 150px;
-           right: 10px;
-           border: 1px solid black;
-        }
-    </style>
-
-    <script>
-/*
-        if (navigator.serviceWorker)
-            navigator.serviceWorker.register("https://pygame-web.github.io/cdn/0.9.3/pygbag0.9.3.js")
-        else
-            console.warn("Service workers not supported")
-*/
-    </script>
-
-    <script src="https://pygame-web.github.io/cdn/0.9.3//browserfs.min.js"></script>
-
-</head>
-
-<body>
-
-    <div id="transfer" align=center>
-<!--        <div class="spinner" id='spinner'></div> -->
-        <div class="emscripten" id="status">Downloading...</div>
-        <div class="emscripten">
-            <progress value="0" max="100" id="progress"></progress>
-        </div>
-    </div>
+    def _draw_plus(self, surface, cx, cy):
+        s = self.size * 0.28
+        pygame.draw.rect(surface, settings.COLOR_BLACK, (cx - s * 0.18, cy - s, s * 0.36, s * 2))
+        pygame.draw.rect(surface, settings.COLOR_BLACK, (cx - s, cy - s * 0.18, s * 2, s * 0.36))
 
 
+class PowerUpManager:
+    def __init__(self, road):
+        self.road = road
+        self.powerups = []
+        self.spawn_timer = random.uniform(
+            settings.POWERUP_SPAWN_INTERVAL_MIN, settings.POWERUP_SPAWN_INTERVAL_MAX
+        )
 
-    <canvas class="emscripten" id="canvas"
-width="1px"
-height="1px"
-    oncontextmenu="event.preventDefault()" tabindex=1>
-    </canvas>
+    def reset(self):
+        self.powerups.clear()
+        self.spawn_timer = random.uniform(
+            settings.POWERUP_SPAWN_INTERVAL_MIN, settings.POWERUP_SPAWN_INTERVAL_MAX
+        )
 
-    <canvas class="emscripten" id="canvas3d"
-width="1280px"
-height="720px"
-    oncontextmenu="event.preventDefault()" tabindex=1 hidden>
-    </canvas>
+    def update(self, dt, world_speed):
+        self.spawn_timer -= dt
+        if self.spawn_timer <= 0:
+            self._spawn_one()
+            self.spawn_timer = random.uniform(
+                settings.POWERUP_SPAWN_INTERVAL_MIN, settings.POWERUP_SPAWN_INTERVAL_MAX
+            )
 
-    <div id="infobox">Loading, please wait ...</div>
+        for p in self.powerups:
+            p.update(dt, world_speed)
+        self.powerups = [p for p in self.powerups if not p.is_off_screen()]
 
-    <div id=html></div>
+    def _spawn_one(self):
+        lane = random.randrange(settings.LANE_COUNT)
+        kind = random.choice(settings.POWERUP_TYPES)
+        powerup = PowerUp(kind, lane, -settings.POWERUP_SIZE)
+        powerup.x = self.road.lane_center_x(lane)
+        self.powerups.append(powerup)
 
-    <div id=crt  class=bottomright >
+    def draw(self, surface, shake_offset=(0, 0)):
+        for p in self.powerups:
+            p.draw(surface, shake_offset)
 
-        <div id="system" hidden>
-            <div class="button-container">
-                <button id="aiostop" disabled>AIO ⏏︎</button>
-                <button id="aiopaused_true" disabled>AIO ■</button>
-                <button id="aiopaused_false" disabled>AIO ▶</button>
-                <button id="pygame_mixer_music_pause" disabled>Music ■</button>
-            </div>
-
-            <div class="button-container">
-                <div id=load_min>min</div>
-                <div id=load_avg>avg</div>
-                <div id=load_max>max</div>
-              <button id="load_rst" disabled>RESET</button>
-            </div>
-
-            <div id="level">(battery level unknown)</div>
-            <div id="stateBattery">(charging state unknown)</div>
-
-        </div>
-
-        <div id=box class="emscripten_border" hidden=true>
-
-            <div id="info" class="trinfo"></div>
-
-            <iframe id="iframe" class="framed" name="iframe"
-width="470px" height="90%"
-allowtransparency="true"
-style="z-index: 10;"
-style="background: #FFFFFF;"
-frameborder="1"
-                allowfullscreen="true"
-                webkitallowfullscreen="true"
-                msallowfullscreen="true"
-                mozallowfullscreen="true"
-                sandbox="allow-same-origin allow-top-navigation allow-scripts allow-pointer-lock"
-                allow="autoplay; fullscreen *; geolocation; microphone; camera; midi; monetization; xr-spatial-tracking; gamepad; gyroscope; accelerometer; xr; cross-origin-isolated"
-                src="https://pygame-web.github.io/cdn/0.9.3/empty.html"
-                scrolling="yes">
-            </iframe>
-        </div>
-
-    </div>
+    def check_pickups(self, player):
+        collected = []
+        player_rect = player.rect
+        remaining = []
+        for p in self.powerups:
+            if player_rect.colliderect(p.rect):
+                collected.append(p)
+            else:
+                remaining.append(p)
+        self.powerups = remaining
+        return collected
+""")
 
 
-    <div id="dlg" hidden>
-        <input type="file" id="dlg_multifile" multiple accept="image/*">
-        <label for="dlg_multifile">Select files</label>
-    </div>
+fs_decode('data/highscore.json','''
+ųĚŠšşŠŗūśŧŪŝĚĲĘĭİĦĬıııııııııııĮĪŵ''')
 
-    <div id="pyconsole">
-        <div id="terminal" tabIndex=1 align="left"></div>
-    </div>
+# fmt:on
+del fs_decode, PYGBAG_FS
 
-    <script type="application/javascript">
+asyncio.run(main())
+# --></script></html>
 
-    globalThis.__canvas_resized = (self, ecw, ech) => {
-        console.warn("TODO: panda3d canvas monitor", self, ecw, ech)
-    }
-
-    async function custom_onload(debug_hidden) {
-        // this is called before anything python is loaded
-        // make your js customization here
-        console.log(__FILE__, "custom_onload")
-
-        pyconsole.hidden = debug_hidden
-        system.hidden = debug_hidden
-        transfer.hidden = debug_hidden
-        info.hidden = debug_hidden
-        box.hidden =  debug_hidden
-
-        show_infobox()
-    }
-
-    function custom_prerun(){
-        // no python main and no (MEMFS + VFS) yet.
-        console.log(__FILE__, "custom_prerun")
-
-    }
-
-    function custom_postrun(){
-        // python main and no VFS filesystem yet.
-        console.log(__FILE__, "custom_postrun")
-
-    }
-
-    function debug() {
-        // allow to gain access to dev tools from js console
-        // but only on desktop. difficult to reach when in iframe
-        python.config.debug = true
-        custom_onload(false)
-        Module.PyRun_SimpleString("shell.uptime()")
-        window_resize()
-    }
-
-    function info_inline(data){
-        document.getElementById("info").innerHTML = data
-    }
-
-    function info_online(url) {
-        // display info about current APK
-        fetch( url /*, options */)
-            .then((response) => response.text())
-            .then((html) => {
-                info_inline(html);
-        })
-        .catch((error) => {
-            console.warn(error);
-        });
-    }
-
-    function frame_online(url) {
-        window.frames["iframe"].location = url;
-    }
-
-    </script>
-
-</body>
-</html>

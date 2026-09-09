@@ -126,14 +126,16 @@ cached locally after that). Leave this running and open
 
 ### 3. Deploy to Vercel
 
-This repo already ships a **ready-to-deploy `public/` folder** (the
-compiled `index.html`, `neon-street-racer.apk`, `neon-street-racer.tar.gz`,
-`favicon.png`) plus a `vercel.json` that points Vercel's output
-directory at it and sets the correct `Content-Type`/cache headers for
-the `.apk`/`.tar.gz` payloads — Vercel's default guess for those
-extensions is wrong, and that mismatch is exactly what caused earlier
-deploys to hang on the loading screen. With this `vercel.json` in
-place, just:
+This repo ships a **ready-to-deploy `public/index.html`** — a single,
+fully self-contained file (built with pygbag's `--html` embedded-assets
+mode) with the game's Python source packed directly inside it. The
+only external request it makes is a plain `<script src="...">` for
+`pythons.js` from the pygame-web CDN, which works fine cross-origin
+(unlike a Service Worker, which can *never* be registered from a
+different origin than the page — that mismatch, from an earlier
+non-`--html` build, is what caused deploys to hang on the loading
+screen). `vercel.json` just points Vercel's output directory at
+`public/`, so:
 
 ```bash
 npx vercel --prod
@@ -142,16 +144,15 @@ npx vercel --prod
 from the repo root, or import the repo in the Vercel dashboard
 (framework preset **Other** — `vercel.json` handles the rest).
 
-**If you change the game and need to rebuild `public/`:**
+**If you change the game and need to rebuild `public/index.html`:**
 
 ```bash
 pip install pygbag
-python3 -m pygbag --archive --build .   # writes build/web/
-cp build/web/index.html build/web/favicon.png \
-   build/web/*.apk build/web/*.tar.gz public/
+python3 -m pygbag --html --build .   # writes build/web/<name>.html
+cp build/web/*.html public/index.html
 ```
 
-Then commit and push the updated `public/` folder.
+Then commit and push the updated file.
 
 ## Project Structure
 
