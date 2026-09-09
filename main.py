@@ -7,9 +7,9 @@ Run with:
     python3 main.py
 """
 
-import asyncio
 import sys
 import os
+import asyncio
 
 # Ensure the project root is on sys.path so `src` imports resolve
 # correctly regardless of the working directory the script is run from.
@@ -23,7 +23,5 @@ async def main():
     await game.run()
 
 
-try:
+if __name__ == "__main__":
     asyncio.run(main())
-except RuntimeError:
-    asyncio.create_task(main())

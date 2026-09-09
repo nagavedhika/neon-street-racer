@@ -6,8 +6,9 @@ together the road, player, enemies, power-ups, particles, HUD, menus
 and audio into a single cohesive game loop.
 """
 
-import asyncio
 import random
+import asyncio
+
 import pygame
 
 from src import settings
@@ -81,6 +82,11 @@ class Game:
     # Main loop
     # ------------------------------------------------------------------
     async def run(self):
+        # The loop is async (and yields with `await asyncio.sleep(0)` every
+        # frame) so this exact same code can run either as a normal desktop
+        # app (via `asyncio.run(game.run())`) or compiled to WebAssembly
+        # with pygbag, which requires the main loop to cooperatively yield
+        # back to the browser's event loop each frame.
         while self.running:
             dt = self.clock.tick(settings.FPS) / 1000.0
             dt = min(dt, 0.05)  # clamp to avoid huge steps if the window stalls
@@ -88,6 +94,7 @@ class Game:
             self._handle_events()
             self._update(dt)
             self._draw()
+
             await asyncio.sleep(0)
 
         self._shutdown()

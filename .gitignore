@@ -1,63 +1,13 @@
-# Byte-compiled / optimized / DLL files
 __pycache__/
-*.py[cod]
-*$py.class
-
-# C extensions
-*.so
-
-# Distribution / packaging
-.Python
-build/*
-!build/web/
-!build/web/**
-build/web-cache/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
-
-# Virtual environments
-venv/
+*.pyc
+*.pyo
 .venv/
+venv/
 env/
-ENV/
-
-# IDE and editor files
-.idea/
-.vscode/
-*.swp
-*.swo
-*~
-
-# Operating System files
-.DS_Store
-Thumbs.db
-desktop.ini
-
-# Testing and coverage
-.pytest_cache/
+*.egg-info/
 .mypy_cache/
-.ruff_cache/
-.coverage
-htmlcov/
+.pytest_cache/
+.DS_Store
 
-# Docker archive exports and large binaries
-*.tar
-*.tar.gz
-!build/web/*.tar.gz
-!build/web/*.apk
-!public/*.tar.gz
-!public/*.apk
-neon-street-racer.tar
-
+# Local high score save (regenerated at runtime; keep the folder though)
+data/highscore.json

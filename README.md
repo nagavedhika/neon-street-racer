@@ -48,67 +48,97 @@ drive, the higher your score climbs — and the harder the traffic gets.
 | `R`                    | Quick-restart after Game Over |
 | `Up` / `Down` + `Enter`| Navigate menus                |
 
-## Technologies Used
+## Requirements
 
-- **Python 3.11 / 3.8+** — Core game programming language
-- **Pygame** — Game loop, window management, event handling, 2D graphics rendering, and procedural audio synthesis
-- **Docker** — Containerized environment with SDL2 and X11 display dependencies
-
-## Installation & Running Locally
-
-### Prerequisites
 - Python 3.8 or newer
 - `pygame` (see `requirements.txt`)
-- A graphical desktop environment (X11 / Wayland / Windows / macOS)
+- A Linux desktop environment with a graphical display (X11 or
+  compatible). Kali Linux is fully supported.
 
-### Local Setup
+## Installation
 
 ```bash
-# Clone the repository
-git clone https://github.com/nagavedhika/neon-street-racer.git
-cd neon-street-racer
+sudo apt update
+sudo apt install python3 python3-pip
 
-# Install dependencies (or use a virtual environment)
+# From the project root:
 python3 -m pip install -r requirements.txt
-
-# Run the game
-python3 main.py
 ```
 
-If using a virtual environment:
+If your distribution's Python is externally managed and pip refuses a
+system-wide install, use a virtual environment instead:
+
 ```bash
 python3 -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+source venv/bin/activate
 pip install -r requirements.txt
+```
+
+## How to Run on Kali Linux
+
+```bash
+cd neon-street-racer
 python3 main.py
 ```
 
-## Running with Docker
+The game opens in a standard graphical window at 1280x720. If you
+installed into a virtual environment, activate it first
+(`source venv/bin/activate`) before running `main.py`.
 
-### 1. Build the Docker Image
+## Running in a browser (localhost) and deploying to Vercel
+
+This is still the exact same game/code — `main.py` and `src/game.py`
+only had their main loop changed to `async`/`await asyncio.sleep(0)`
+per frame, which is required by [pygbag](https://github.com/pygame-web/pygbag),
+the tool that compiles Pygame to WebAssembly so it can run inside a
+browser tab. That one change is a no-op on desktop (`python3 main.py`
+still works exactly as documented above) and is what lets the same
+source compile to run in a browser.
+
+**Important:** Pygame itself is a native desktop framework (it opens a
+real OS window via SDL). It cannot run on Vercel, or in any browser,
+without a WebAssembly build — there is no way around that step. pygbag
+is what produces that build.
+
+### 1. Install pygbag (once)
+
 ```bash
-docker build -t neon-street-racer .
+pip install pygbag
 ```
 
-### 2. Run the Container
-To run the graphical Pygame interface from Docker, allow local X11 display forwarding:
+### 2. Build + preview at localhost
 
-**On Linux (X11):**
+From the project root:
+
 ```bash
-xhost +local:docker
-docker run -it --rm \
-  -e DISPLAY=$DISPLAY \
-  -v /tmp/.X11-unix:/tmp/.X11-unix \
-  --device /dev/snd \
-  neon-street-racer
+python3 -m pygbag main.py
 ```
 
-**On Windows (using WSL2 / X server / VcXsrv):**
+This does two things:
+- Compiles the game to WebAssembly into `build/web/`
+- Serves that folder at **http://localhost:8000** so you can play it
+  in your browser immediately
+
+The first build downloads pygbag's WASM runtime files from its CDN, so
+it needs a normal internet connection the first time (results are
+cached locally after that). Leave this running and open
+`http://localhost:8000` in your browser to play.
+
+### 3. Deploy the build to Vercel
+
+Once `build/web/` exists, that folder is a complete static site — no
+server, no build step, just files. Deploy it as-is:
+
 ```bash
-docker run -it --rm \
-  -e DISPLAY=host.docker.internal:0 \
-  neon-street-racer
+cd build/web
+npx vercel --prod
 ```
+
+Or push `build/web`'s contents to a GitHub repo and import it in the
+Vercel dashboard with framework preset **Other**, build command and
+output directory left blank. Either way, Vercel is just serving static
+files (HTML/JS/WASM), so there's no risk of it hanging on "loading"
+the way a raw Python script would if deployed directly.
 
 ## Project Structure
 
